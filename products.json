@@ -1,0 +1,2896 @@
+[
+  {
+    "slug": "toilet-paper",
+    "name": "Toilet Paper",
+    "kind": "app",
+    "job": "Documents",
+    "status": "landing",
+    "stack": [
+      "Python"
+    ],
+    "runs": "Local CLI and MCP server",
+    "tagline": "Diagrams, Word documents and decks from a short source file.",
+    "summary": "Turns YAML and Markdown into BPMN, flowcharts, RACI matrices, icon pictures, Word documents and decks. No language model inside.",
+    "hero": {
+      "headline": "Write a short source file. Get the diagram or the Word document.",
+      "sub": "Toilet Paper turns YAML and Markdown into BPMN, flowcharts, RACI matrices, icon pictures, Word documents and decks. There is no language model inside, so the same source gives the same output every time.",
+      "command": "tp render EXPENSE.flow.yaml"
+    },
+    "viewer": [
+      {
+        "tab": "Flowchart",
+        "source": "assets/src/EXPENSE.flow.yaml",
+        "svg": "assets/src/EXPENSE.svg",
+        "caption": "A flowchart from {lines} lines. The source holds no coordinates: tp calculates the layout."
+      },
+      {
+        "tab": "Responsibility matrix",
+        "source": "assets/src/RESPONSIBILITY.raci.yaml",
+        "svg": "assets/src/RESPONSIBILITY.svg",
+        "caption": "tp enforces one accountable role per row, so a matrix with a gap does not render."
+      },
+      {
+        "tab": "Icon picture",
+        "source": "assets/src/CYCLE.visual.yaml",
+        "svg": "assets/src/CYCLE.svg",
+        "caption": "Twelve picture layouts like this one, each item with a Lucide icon."
+      }
+    ],
+    "proof": [
+      {
+        "value": "8 to 1",
+        "label": "scripts that built Word documents",
+        "note": "Before: one per document, 4 of them copies. Now: one command.",
+        "source": "docs/business.md, state on 2026-10-07",
+        "short": "scripts for Word",
+        "icon": "layers"
+      },
+      {
+        "value": "22 to 0",
+        "label": "flows crossing a box",
+        "note": "18 hand-written diagrams against the same diagrams laid out by tp.",
+        "source": "docs/business.md",
+        "short": "flows crossing a box",
+        "icon": "workflow"
+      },
+      {
+        "value": "51 to 0",
+        "label": "label overlaps",
+        "note": "Same 18 diagrams, same measure.",
+        "source": "docs/business.md",
+        "short": "label overlaps",
+        "icon": "list-checks"
+      }
+    ],
+    "how": {
+      "title": "The agent writes the content. tp does the rest.",
+      "text": "A source file says what is in the picture or the document. tp calculates the layout, draws it, stamps the output with the hash of its source and checks later that nothing published is older than its source.",
+      "svg": "assets/src/LAYOUTS.svg"
+    },
+    "agents": {
+      "title": "Built for agents to call",
+      "text": "The MCP server gives an agent eleven tools. Draft tools write a file only when the source is valid. When it is not, they return the full list of problems and write nothing.",
+      "tools": [
+        {
+          "name": "tp_schema",
+          "text": "The source format, with an example."
+        },
+        {
+          "name": "tp_validate",
+          "text": "Checks a source without rendering it."
+        },
+        {
+          "name": "tp_render",
+          "text": "Makes the artifact."
+        },
+        {
+          "name": "tp_draft_bpmn",
+          "text": "Takes YAML text. When it is valid, writes the file and renders it."
+        },
+        {
+          "name": "tp_draft_raci",
+          "text": "Drafts a RACI source."
+        },
+        {
+          "name": "tp_check",
+          "text": "Finds outputs older than their source."
+        },
+        {
+          "name": "tp_preview",
+          "text": "Page images of a document, without opening Word."
+        },
+        {
+          "name": "tp_import_bpmn",
+          "text": "Turns an existing diagram into a source."
+        },
+        {
+          "name": "tp_icons",
+          "text": "Lucide icon names for a word."
+        },
+        {
+          "name": "tp_variants",
+          "text": "Every variant and theme as PNG, to choose one."
+        },
+        {
+          "name": "tp_audit",
+          "text": "Checks a Word file: header, footer, true file properties and the source stamp."
+        }
+      ],
+      "snippet": "tp schema flow\ntp render EXPENSE.flow.yaml\ntp check ./docs\n# exit 0: nothing to act on, 1: something to fix, 2: could not check"
+    },
+    "limits": [
+      {
+        "title": "The layout is automatic",
+        "text": "It avoids crossings and overlaps, but a person drawing by hand can make a tighter picture. The .bpmn opens in a modeler for polish, and a manual edit is lost on the next render."
+      },
+      {
+        "title": "PDF needs Word",
+        "text": "The PDF comes from Microsoft Word, so the machine that renders needs it. Word also adds its own timestamps; the pages and text stay the same."
+      },
+      {
+        "title": "Two helper apps are optional",
+        "text": "The sharpest PNG and the page preview use two small helper apps. Without them tp still renders, and says so."
+      },
+      {
+        "title": "Old files are not judged",
+        "text": "A document made before tp shows as unstamped, never as stale, until it moves to a source file."
+      }
+    ],
+    "facts": [
+      "No language model inside.",
+      "Same source, same .bpmn, .svg, .png and .docx byte for byte.",
+      "Every output carries the hash of its source.",
+      "Word template is set with TP_TEMPLATES."
+    ],
+    "proof_title": "What it replaced",
+    "viewer_lead": "The source on the left, what tp drew from it on the right.",
+    "tables": [
+      {
+        "title": "Six kinds of source, one command",
+        "head": [
+          "You write",
+          "You get"
+        ],
+        "rows": [
+          [
+            "M01.bpmn.yaml",
+            "A .bpmn file that opens in Camunda Modeler, bpmn.io and Signavio, plus SVG and PNG"
+          ],
+          [
+            "EXPORT.flow.yaml",
+            "SVG and PNG"
+          ],
+          [
+            "PBI-EXPORT.raci.yaml",
+            "SVG, PNG and a Markdown table"
+          ],
+          [
+            "DQ-CYCLE.visual.yaml",
+            "SVG and PNG: steps, cycle, comparison and nine more layouts"
+          ],
+          [
+            "POLICY.md with a tp front matter",
+            "A .docx on your Word template, and the .pdf through Word"
+          ],
+          [
+            "TALK.deck.yaml",
+            "An editable .pptx on the company master, and one HTML file with the same look"
+          ]
+        ],
+        "pills": [
+          "steps",
+          "cycle",
+          "compare",
+          "funnel",
+          "pyramid",
+          "timeline",
+          "stats",
+          "matrix",
+          "tree",
+          "hub",
+          "roadmap"
+        ]
+      },
+      {
+        "title": "New since 2026-10-20",
+        "lead": "From the changelog, newest first.",
+        "head": [
+          "Version",
+          "What it added"
+        ],
+        "rows": [
+          [
+            "2.16.0",
+            "Decks: a deck source compiles to an editable .pptx on the company master and one HTML file with the same look, with figures and charts."
+          ],
+          [
+            "2.15.0",
+            "Reports carry a classification in colour on header, footer and cover, and tp check enforces the version rule 0.x, N.0, N.1 draft."
+          ],
+          [
+            "2.14.0",
+            "The company's report template as data, for report prototypes."
+          ],
+          [
+            "2.13.0",
+            "The company logo in its green, three more document kinds (request, closure, handover) and 11 document templates."
+          ],
+          [
+            "2.12.0",
+            "Decision and guide documents, and state colours at AA contrast."
+          ],
+          [
+            "2.11.0",
+            "One-pager and status documents, and tp page for app pages."
+          ],
+          [
+            "2.10.0",
+            "tp brand: one source for colour tokens and logos, the project charter and a Summary heading."
+          ],
+          [
+            "2.9.0",
+            "Steps with parallel cards, every arrow on the centre line, and a gallery of document templates."
+          ],
+          [
+            "2.8.0",
+            "One tab icon per app, kept in its pages (tp appicon)."
+          ],
+          [
+            "2.6.0",
+            "Tones by meaning, the mind map layout, and an audit that measures the resolution of every picture."
+          ],
+          [
+            "2.5.0",
+            "Maps at one scale with one label and title size, fewer line crossings, chapter breaks and thin table lines."
+          ],
+          [
+            "2.4.0",
+            "A report can have a cover page, a contents page with page numbers and chapters on new pages (cover: true)."
+          ],
+          [
+            "2.3.0",
+            "A neon theme for dark slides, and a release key that can be replaced without a reinstall."
+          ],
+          [
+            "2.2.2",
+            "Signed releases, with tp status, tp update and tp rollback."
+          ],
+          [
+            "2.2.0",
+            "An installed tp updates itself from the shared folder, with no console window."
+          ],
+          [
+            "2.1.0",
+            "The AI label goes into pictures, documents and decks."
+          ]
+        ]
+      }
+    ],
+    "featured": true,
+    "rank": 1,
+    "glyph": "toilet-paper",
+    "cover": {
+      "kind": "svg",
+      "file": "assets/src/EXPENSE.svg",
+      "title": "EXP-01 Expense approval"
+    },
+    "scene": {
+      "steps": [
+        {
+          "x": 0.5,
+          "y": 0.5,
+          "s": 1,
+          "ms": 0,
+          "hold": 1500,
+          "page": 0
+        },
+        {
+          "x": 0.175,
+          "y": 0.37,
+          "s": 1.7,
+          "ms": 1200,
+          "hold": 600
+        },
+        {
+          "x": 0.855,
+          "y": 0.37,
+          "s": 1.7,
+          "ms": 4200,
+          "hold": 900
+        },
+        {
+          "x": 0.5,
+          "y": 0.5,
+          "s": 1,
+          "ms": 1200,
+          "hold": 500
+        },
+        {
+          "x": 0.5,
+          "y": 0.5,
+          "s": 1,
+          "dx": -0.07,
+          "ms": 0,
+          "hold": 500,
+          "page": 1
+        },
+        {
+          "x": 0.5,
+          "y": 0.5,
+          "s": 1,
+          "dx": 0.07,
+          "ms": 8000,
+          "hold": 1000,
+          "lin": true
+        },
+        {
+          "x": 0.5,
+          "y": 0.5,
+          "s": 1,
+          "ms": 0,
+          "hold": 1400,
+          "page": 2
+        },
+        {
+          "x": 0.515,
+          "y": 0.31,
+          "s": 1.5,
+          "ms": 1100,
+          "hold": 100
+        },
+        {
+          "x": 0.66,
+          "y": 0.38,
+          "s": 1.5,
+          "ms": 750,
+          "hold": 0,
+          "lin": true
+        },
+        {
+          "x": 0.72,
+          "y": 0.54,
+          "s": 1.5,
+          "ms": 750,
+          "hold": 0,
+          "lin": true
+        },
+        {
+          "x": 0.66,
+          "y": 0.7,
+          "s": 1.5,
+          "ms": 750,
+          "hold": 0,
+          "lin": true
+        },
+        {
+          "x": 0.515,
+          "y": 0.77,
+          "s": 1.5,
+          "ms": 750,
+          "hold": 0,
+          "lin": true
+        },
+        {
+          "x": 0.37,
+          "y": 0.7,
+          "s": 1.5,
+          "ms": 750,
+          "hold": 0,
+          "lin": true
+        },
+        {
+          "x": 0.31,
+          "y": 0.54,
+          "s": 1.5,
+          "ms": 750,
+          "hold": 0,
+          "lin": true
+        },
+        {
+          "x": 0.37,
+          "y": 0.38,
+          "s": 1.5,
+          "ms": 750,
+          "hold": 0,
+          "lin": true
+        },
+        {
+          "x": 0.515,
+          "y": 0.31,
+          "s": 1.5,
+          "ms": 750,
+          "hold": 600,
+          "lin": true
+        },
+        {
+          "x": 0.5,
+          "y": 0.5,
+          "s": 1,
+          "ms": 1100,
+          "hold": 400
+        },
+        {
+          "x": 0.5,
+          "y": 0.5,
+          "s": 1,
+          "ms": 0,
+          "hold": 1500,
+          "page": 3
+        },
+        {
+          "x": 0.1325,
+          "y": 0.5,
+          "s": 1.7,
+          "ms": 1200,
+          "hold": 600
+        },
+        {
+          "x": 0.8665,
+          "y": 0.5,
+          "s": 1.7,
+          "ms": 4200,
+          "hold": 900
+        },
+        {
+          "x": 0.5,
+          "y": 0.5,
+          "s": 1,
+          "ms": 1200,
+          "hold": 500
+        }
+      ],
+      "pages": [
+        {
+          "kind": "svg",
+          "file": "assets/src/EXPENSE.svg",
+          "title": "Flowchart"
+        },
+        {
+          "kind": "svg",
+          "file": "assets/src/RESPONSIBILITY.svg",
+          "title": "Responsibility matrix"
+        },
+        {
+          "kind": "svg",
+          "file": "assets/src/CYCLE.svg",
+          "title": "Icon picture"
+        },
+        {
+          "kind": "svg",
+          "file": "assets/src/LAYOUTS.svg",
+          "title": "Steps with icons"
+        }
+      ]
+    },
+    "install": {
+      "lead": "Access is by request. The package installs offline on Windows, and an installed copy keeps itself current.",
+      "steps": [
+        {
+          "title": "Get the package",
+          "text": "It holds the tp wheel, the wheels of its libraries at the tested versions, install.ps1 and a SHA256SUMS file. It is shared on request, not published."
+        },
+        {
+          "title": "Run the installer",
+          "text": "It makes a private Python environment, puts tp on your user PATH, registers the MCP server toilet-paper for Claude Code and copies a short skill. -Check only looks. -Uninstall removes everything.",
+          "code": ".\\install.ps1"
+        },
+        {
+          "title": "Updates",
+          "text": "An installed tp reads the VERSION of the folder it came from at most every 6 hours. When it is newer, it checks SHA256SUMS and updates itself. TP_NO_UPDATE=1 turns this off, and tp update --check shows the state. Releases are signed. tp status shows the installed version, and tp rollback goes back one version.",
+          "code": "tp update --check\ntp status\ntp rollback"
+        }
+      ],
+      "note": "Working from source instead: pip install -e \".[dev,mcp,pdf]\". PDF output needs Microsoft Word on the machine, and tp templates shows the Word template path it expects.",
+      "source": "README of the tp repository, sections Install and Install on another machine"
+    },
+    "headline_metrics": true,
+    "headline": [
+      {
+        "value": "2 of 12",
+        "short": "Craft apps plug into tp",
+        "label": "Craft apps plug into tp",
+        "note": "vectorcraft draws the diagram PNG and wordcraft draws the page previews. Both are alpha, and tp works without them.",
+        "source": "docs/business.md",
+        "icon": "plug"
+      },
+      {
+        "value": "12",
+        "short": "layouts for pictures, from one short file",
+        "label": "layouts for pictures, from one short file",
+        "note": "Steps, cycle, comparison, funnel, pyramid, timeline, numbers, 2x2 matrix, tree, hub, roadmap and mind map.",
+        "source": "README, layout table",
+        "icon": "layout-grid"
+      },
+      {
+        "value": "0",
+        "short": "plugged-in apps needed to render",
+        "label": "plugged-in apps needed to render",
+        "note": "Without vectorcraft the PNG falls back to MuPDF and tp says so. Without wordcraft only tp preview stops.",
+        "source": "docs/business.md",
+        "icon": "shield-check"
+      }
+    ],
+    "gallery": {
+      "file": "assets/gallery.html",
+      "title": "Every template and icon",
+      "lead": "The full gallery tp draws: each variant of the pictures, the Word templates and the icon set, all rendered by tp."
+    },
+    "lifecycle": {
+      "state": "beta",
+      "version": "2.16.0",
+      "date": "2026-10-24",
+      "source": "Registry, read from the tool's own version file"
+    },
+    "roadmap": [
+      {
+        "title": "Toilet Paper 2: a compiler of governance artifacts for agents",
+        "state": "In development"
+      }
+    ],
+    "backlog": [],
+    "backlog_source": "Owner backlog, 2026-10-23"
+  },
+  {
+    "slug": "vault-index",
+    "name": "Vault Index",
+    "kind": "mcp",
+    "job": "Knowledge",
+    "status": "landing",
+    "glyph": "vault-index",
+    "stack": [
+      "Python",
+      "SQLite FTS5",
+      "ONNX"
+    ],
+    "runs": "Local CLI and MCP server",
+    "tagline": "Find the right note by meaning, on your own machine.",
+    "summary": "Hybrid search over a folder of Markdown notes, for people and for agents. No language model in the index, and nothing leaves the PC.",
+    "hero": {
+      "headline": "Find the right note by meaning, on your own machine.",
+      "sub": "Vault Index turns a folder of Markdown notes into a search index. It matches the words you typed and the meaning you meant, and returns the five best passages instead of every file that mentions your words. No model calls, and nothing leaves the PC.",
+      "command": "python -m vaultindex search \"why did we stop the weekly status mail\""
+    },
+    "proof_title": "In numbers",
+    "proof": [
+      {
+        "value": "13x",
+        "label": "faster than scanning every note, full-text mode",
+        "note": "Full-text mode: 0.09 s against 1.2 s for a keyword scan of 2,646 notes on 2026-10-20. Warm cache, one laptop.",
+        "source": "assets/measurements.md",
+        "short": "faster than a scan, full-text mode",
+        "icon": "gauge"
+      },
+      {
+        "value": "500x",
+        "label": "less text for the agent to read",
+        "note": "5 passages, about 3,500 characters in all, against the 24 to 224 whole files a keyword search matched (1.1 to 4.7 million characters). About 900 tokens instead of 270,000 or more.",
+        "source": "assets/measurements.md",
+        "short": "less text to read",
+        "icon": "file-text"
+      },
+      {
+        "value": "76%",
+        "label": "of real questions answered in the top 5",
+        "note": "Hybrid search on 38 real questions, against 61% for full-text alone. Measured on 2026-09-03, before query translation was added.",
+        "source": "docs/vault-index.md, section Numbers",
+        "short": "right note in the top 5",
+        "icon": "target"
+      },
+      {
+        "value": "0",
+        "label": "model calls per search",
+        "note": "No language model at any step. The only download is the embedding model, once, checked by hash. An optional local model can translate a query before it searches.",
+        "source": "docs/vault-index.md, section What it is",
+        "icon": "cog"
+      }
+    ],
+    "viewer_lead": "A real run on an example vault of 12 notes. The command on the left, the output on the right, trimmed to the fields that matter.",
+    "viewer": [
+      {
+        "tab": "Search by meaning",
+        "source": "assets/src/search-meaning.cmd.txt",
+        "output": "assets/src/search-meaning.out.txt",
+        "caption": "The question shares few words with the note title. The top result was found by full text, by meaning and by a link from another note."
+      },
+      {
+        "tab": "People notes stay out",
+        "source": "assets/src/people.cmd.txt",
+        "output": "assets/src/people.out.txt",
+        "caption": "Notes about people are indexed but left out by default. The answer says how many it left out, so a missing result does not look like a missing note."
+      },
+      {
+        "tab": "Check the index",
+        "source": "assets/src/check.cmd.txt",
+        "output": "assets/src/check.out.txt",
+        "caption": "The index is derived. check rehashes the notes and compares them with the index, and you can delete the index and rebuild it at any time."
+      }
+    ],
+    "how": {
+      "title": "Two searches, fused by rank.",
+      "text": "Your notes stay the source of truth. The index is a single SQLite file next to them that you can delete and rebuild.",
+      "steps": [
+        {
+          "title": "Build",
+          "text": "Reads every Markdown note, cuts it into passages of up to 600 characters and stores them. A rebuild skips every note that did not change."
+        },
+        {
+          "title": "Embed",
+          "text": "A small model that runs on the CPU, inside the process, turns each passage into 384 numbers."
+        },
+        {
+          "title": "Search",
+          "text": "Full-text and vector results are fused by rank. A note linked from a better result moves up a little, and decisions weigh slightly above daily notes."
+        },
+        {
+          "title": "Check",
+          "text": "check rehashes the notes and tells you if the index drifted from the files."
+        }
+      ]
+    },
+    "tables": [
+      {
+        "title": "Against scanning every file",
+        "lead": "Same 8 questions, same 2,646 notes. Hybrid trades speed for meaning, so it is slower than a scan on this machine.",
+        "head": [
+          "",
+          "Scan every note",
+          "Full-text mode",
+          "Hybrid mode"
+        ],
+        "code_first": false,
+        "rows": [
+          [
+            "Time per question",
+            "1.2 s",
+            "0.09 s",
+            "1.8 s"
+          ],
+          [
+            "What comes back",
+            "24 to 224 whole files",
+            "5 passages",
+            "5 passages"
+          ],
+          [
+            "Finds a note by meaning",
+            "No",
+            "No",
+            "Yes"
+          ],
+          [
+            "Right note in the top 5",
+            "Not measured",
+            "61% of 38 questions",
+            "76% of 38 questions"
+          ],
+          [
+            "Model calls",
+            "0",
+            "0",
+            "0"
+          ]
+        ]
+      },
+      {
+        "title": "Filters on every search",
+        "head": [
+          "Flag",
+          "What it does"
+        ],
+        "rows": [
+          [
+            "--type decision",
+            "Only notes of that type. Repeat the flag for more types."
+          ],
+          [
+            "--folder Projects/",
+            "Only notes under that folder."
+          ],
+          [
+            "--since, --until",
+            "Only notes dated inside the window."
+          ],
+          [
+            "--as-of 2026-03-31",
+            "The notes as they stood on that day, with a flag on results changed since."
+          ],
+          [
+            "--streams fts",
+            "Full-text only, for the fastest answer."
+          ],
+          [
+            "--sensitive",
+            "Include the notes about people, for this call only."
+          ]
+        ]
+      }
+    ],
+    "agents": {
+      "title": "Built for agents to call",
+      "text": "An MCP server exposes search and the session briefing. It loads the model once and keeps it for as long as the server runs. If the libraries are missing it falls back to a subprocess and says which path it used.",
+      "tools": [
+        {
+          "name": "vault_search",
+          "text": "Hybrid search with filters for type, folder and dates. Notes about people stay out unless asked."
+        },
+        {
+          "name": "vault_briefing",
+          "text": "Opens a session from what is already written: the last session, open items, recent decisions. No model."
+        }
+      ],
+      "snippet": "python -m vaultindex build --embed\npython -m vaultindex search \"retention for call notes\" -k 5\npython -m vaultindex check"
+    },
+    "limits": [
+      {
+        "title": "Hybrid search is not instant",
+        "text": "From the command line a cold hybrid search takes 12 to 16 s while the model loads. Warm, we measured 1.8 s on a busy laptop. Use --streams fts when speed matters."
+      },
+      {
+        "title": "Ranking is not perfect",
+        "text": "The right note comes first for 29% of questions and in the top 5 for 76%. Treat the list as candidates."
+      },
+      {
+        "title": "Markdown only",
+        "text": "It indexes .md files. Other formats are not read."
+      },
+      {
+        "title": "People notes depend on a list",
+        "text": "The folders and note types treated as sensitive come from one list in the code. A note about a person outside those folders, with no listed type, is not filtered."
+      },
+      {
+        "title": "New notes wait for vectors",
+        "text": "A search refreshes full-text before it answers, but vectors for new notes arrive with the daily 18:00 build. The answer says how many passages still lack them."
+      },
+      {
+        "title": "It uses memory",
+        "text": "The MCP server with the model loaded holds about 520 MB of RAM while it runs."
+      }
+    ],
+    "method": "Measured on 2026-10-20 on one Windows laptop, against a notes vault of 2,646 Markdown files (about 19 million characters). Scan: read every file and keep the ones that contain all the query words. Index: the same 8 queries through the search function in a running process. Medians, warm disk cache. Tokens are estimated at 4 characters each. The top-5 numbers come from the project benchmark of 38 real questions, run on 2026-09-03. Your numbers will differ with your notes and your machine.",
+    "featured": true,
+    "rank": 2,
+    "cover": {
+      "kind": "terminal",
+      "file": "assets/cover.txt",
+      "title": "vaultindex"
+    },
+    "scene": {
+      "steps": [
+        {
+          "x": 0.5,
+          "y": 0,
+          "s": 1,
+          "ms": 0,
+          "hold": 3300,
+          "page": 0,
+          "run": true
+        },
+        {
+          "x": 0.5,
+          "y": 0.62,
+          "s": 1,
+          "ms": 2200,
+          "hold": 1800
+        },
+        {
+          "x": 0.5,
+          "y": 1,
+          "s": 1,
+          "ms": 1800,
+          "hold": 1500
+        },
+        {
+          "x": 0.5,
+          "y": 0,
+          "s": 1,
+          "ms": 0,
+          "hold": 4600,
+          "page": 1,
+          "run": true
+        },
+        {
+          "x": 0.5,
+          "y": 0.45,
+          "s": 1,
+          "ms": 2000,
+          "hold": 2200
+        },
+        {
+          "x": 0.5,
+          "y": 1,
+          "s": 1,
+          "ms": 2400,
+          "hold": 2400
+        },
+        {
+          "x": 0.5,
+          "y": 0,
+          "s": 1,
+          "ms": 0,
+          "hold": 3400,
+          "page": 2,
+          "run": true
+        },
+        {
+          "x": 0.5,
+          "y": 0.55,
+          "s": 1,
+          "ms": 2200,
+          "hold": 1800
+        },
+        {
+          "x": 0.5,
+          "y": 1,
+          "s": 1,
+          "ms": 1800,
+          "hold": 1500
+        },
+        {
+          "x": 0.5,
+          "y": 0.5,
+          "s": 1,
+          "ms": 0,
+          "hold": 2200,
+          "page": 3
+        },
+        {
+          "x": 0.572,
+          "y": 0.385,
+          "s": 1.5,
+          "ms": 1500,
+          "hold": 2800
+        },
+        {
+          "x": 0.262,
+          "y": 0.791,
+          "s": 1.5,
+          "ms": 2200,
+          "hold": 2400
+        },
+        {
+          "x": 0.5,
+          "y": 0.5,
+          "s": 1,
+          "ms": 1500,
+          "hold": 800
+        }
+      ],
+      "pages": [
+        {
+          "kind": "terminal",
+          "source": "assets/src/search-meaning.cmd.txt",
+          "output": "assets/src/search-meaning.out.txt",
+          "title": "vaultindex search"
+        },
+        {
+          "kind": "terminal",
+          "source": "assets/src/people.cmd.txt",
+          "output": "assets/src/people.out.txt",
+          "title": "vaultindex search (people notes)"
+        },
+        {
+          "kind": "terminal",
+          "source": "assets/src/check.cmd.txt",
+          "output": "assets/src/check.out.txt",
+          "title": "vaultindex check and stats"
+        },
+        {
+          "kind": "svg",
+          "file": "assets/graph.svg",
+          "title": "Graph view (illustration)"
+        }
+      ]
+    },
+    "impact": {
+      "figure": "500x",
+      "label": "less text for the agent to read",
+      "basis": "5 passages, about 3,500 characters in all against the 24 to 224 whole files a keyword search returns.",
+      "source": "assets/measurements.md"
+    },
+    "lifecycle": {
+      "state": "in use",
+      "source": "Registry, read from the tool's own version file",
+      "version": "1.0.0",
+      "date": "2026-10-23"
+    },
+    "roadmap": [],
+    "backlog": [
+      {
+        "title": "Structural hygiene of the vault, as flagged by the lint",
+        "state": "Backlog"
+      }
+    ],
+    "backlog_source": "Owner backlog, 2026-10-21"
+  },
+  {
+    "slug": "vault-sources",
+    "name": "Vault Sources",
+    "kind": "agent",
+    "job": "Knowledge",
+    "status": "landing",
+    "glyph": "vault-sources",
+    "rank": 3,
+    "stack": [
+      "Python",
+      "yt-dlp",
+      "Whisper"
+    ],
+    "runs": "Local CLI",
+    "tagline": "Outside knowledge, with its provenance.",
+    "summary": "Brings videos and articles into your notes as sourced files, ranks what to watch against your own open questions, and proposes concept updates that only an explicit accept applies.",
+    "hero": {
+      "headline": "Bring outside knowledge into your notes, with its source attached.",
+      "sub": "Vault Sources fetches a video or an article with one command and writes a note that says where the text came from, when, and which question made you save it. A watchlist ranks new videos against what you are trying to learn. Nothing changes your notes until you accept it.",
+      "command": "python -m vaultsources fetch \"<video url>\" --question \"why this matters\""
+    },
+    "proof_title": "In numbers",
+    "proof": [
+      {
+        "value": "0 to 35",
+        "label": "notes from outside the vault",
+        "note": "On 2026-09-10 the vault had 1,129 notes and none from outside. Today it has 35 source notes.",
+        "source": "docs/vaultsources.md, section What it is; assets/measurements.md",
+        "short": "notes from outside"
+      },
+      {
+        "value": "34 of 35",
+        "label": "sources already analysed",
+        "note": "A source starts as pending and stays visible until it is read.",
+        "source": "assets/measurements.md",
+        "short": "sources analysed"
+      },
+      {
+        "value": "9",
+        "label": "automatic consistency checks",
+        "note": "Broken references, missing folders, stale notes, hash mismatches and more, run by one command.",
+        "source": "docs/vaultsources.md, section QA",
+        "short": "consistency checks"
+      },
+      {
+        "value": "0",
+        "label": "paid APIs to fetch and transcribe",
+        "note": "yt-dlp, the platform captions and a local Whisper model.",
+        "source": "docs/vaultsources.md, section What it is"
+      }
+    ],
+    "viewer_lead": "A real run in a scratch vault, with a public video. The command on the left, what it wrote or answered on the right.",
+    "viewer": [
+      {
+        "tab": "Bring a source in",
+        "source": "assets/src/fetch.cmd.txt",
+        "output": "assets/src/fetch.out.txt",
+        "caption": "The note starts with provenance written by code: URL, author, date, how the text arrived, a hash of the text and the question that pulled it in. The analysis stays pending."
+      },
+      {
+        "tab": "Nothing is lost or doubled",
+        "source": "assets/src/again.cmd.txt",
+        "output": "assets/src/again.out.txt",
+        "caption": "Fetching the same video again is refused unless you pass --force, and the list shows what still waits for a reading. The messages are in Portuguese."
+      }
+    ],
+    "how": {
+      "title": "One pipe, four steps.",
+      "text": "Fetching, scoring and checking are code. Reading and judging a source is a separate step you run on purpose.",
+      "steps": [
+        {
+          "title": "Fetch",
+          "text": "YouTube, TikTok, Instagram, Vimeo, X and web articles. A transcript longer than 4,000 characters goes to a sidecar file so the note stays readable."
+        },
+        {
+          "title": "Record provenance",
+          "text": "Code writes the source, the date, the way the text arrived and a hash of it. A check later notices if the text no longer matches."
+        },
+        {
+          "title": "Analyse",
+          "text": "A session reads the text without timestamps, which are about 15% of a caption, and fills in the thesis, the claims with their source and what changes in your notes."
+        },
+        {
+          "title": "Propose, never apply",
+          "text": "A change to a concept becomes a proposal. Only an explicit accept applies it, and a discard goes to a rejected folder instead of disappearing."
+        }
+      ]
+    },
+    "tables": [
+      {
+        "title": "One writer for every file",
+        "lead": "No state file is edited by hand. Each has one command that writes it.",
+        "head": [
+          "File",
+          "Written by"
+        ],
+        "rows": [
+          [
+            "Sources/_watchlist.json",
+            "watch"
+          ],
+          [
+            "Sources/_queue.json",
+            "poll, queue, ingest"
+          ],
+          [
+            "Concepts/_proposals/*.json",
+            "analyse --apply, concept propose"
+          ],
+          [
+            "_reports/Sources-QA.md",
+            "qa"
+          ]
+        ]
+      },
+      {
+        "title": "How a new video is ranked",
+        "lead": "The score is deterministic and explains itself. It matches the title against your open questions, not against a generic idea of relevance.",
+        "head": [
+          "Signal",
+          "Weight"
+        ],
+        "code_first": false,
+        "rows": [
+          [
+            "An open question the title touches",
+            "2 per shared word, named as the reason from 3 words"
+          ],
+          [
+            "A topic of the feed",
+            "2 per term"
+          ],
+          [
+            "A focus declared in your notes",
+            "1 per term"
+          ],
+          [
+            "A channel marked as focus",
+            "3, fixed"
+          ]
+        ]
+      }
+    ],
+    "agents": {
+      "title": "Built to be driven by an agent",
+      "text": "Every step is a command with plain arguments and one writer, so an agent can run the whole pipe and a person can read what it did.",
+      "tools": [
+        {
+          "name": "fetch",
+          "text": "Brings one source in, with the question that pulled it."
+        },
+        {
+          "name": "watch, poll, queue",
+          "text": "Subscribe to channels and playlists, score new videos, approve candidates."
+        },
+        {
+          "name": "analyse",
+          "text": "Lists what waits for a reading, shows the text, applies the analysis."
+        },
+        {
+          "name": "concept",
+          "text": "Creates, proposes, accepts or rejects a position in the concepts layer."
+        },
+        {
+          "name": "qa",
+          "text": "Nine checks on the notes and the documents that describe them."
+        }
+      ],
+      "snippet": "python -m vaultsources fetch \"<url>\" --question \"why this matters\"\npython -m vaultsources analyse --list\npython -m vaultsources qa --all"
+    },
+    "limits": [
+      {
+        "title": "LinkedIn cannot be fetched",
+        "text": "There is no open API, and scraping a logged-in page breaks with every release. The clip command takes the text from the session that read the page."
+      },
+      {
+        "title": "Analysis needs a model session",
+        "text": "Fetching, scoring and checking are code. Reading a source and judging it is done by a Claude session you run, so it is not free of model calls."
+      },
+      {
+        "title": "The ranking only knows what you wrote",
+        "text": "A subject that is not in your notes ranks by the feed topic alone, never by focus."
+      },
+      {
+        "title": "Messages are in Portuguese",
+        "text": "Command output and note headings are in Portuguese. The front matter keys are in English."
+      },
+      {
+        "title": "Some networks need setup",
+        "text": "yt-dlp must be the Python module, and a network that inspects TLS needs a CA bundle or every fetch fails with a certificate error."
+      }
+    ],
+    "method": "Counts taken on 2026-10-20, read-only, from the owner's own notes vault: 35 source notes, 24 transcript files, 34 analysed and 1 pending. The 0-to-35 comparison uses the 2026-09-10 state from the project documentation. The demo is a real run on a public video in an empty scratch vault.",
+    "cover": {
+      "kind": "terminal",
+      "file": "assets/cover.txt",
+      "title": "Sources/2017-10-05-but-what-is-a-neural-network.md"
+    },
+    "lifecycle": {
+      "state": "in use",
+      "version": "1.0.0",
+      "source": "Package version"
+    },
+    "roadmap": [],
+    "backlog": []
+  },
+  {
+    "slug": "capy",
+    "name": "Capy",
+    "kind": "app",
+    "job": "Knowledge",
+    "status": "landing",
+    "featured": true,
+    "rank": 4,
+    "glyph": "capy",
+    "stack": [
+      "Python"
+    ],
+    "runs": "Windows desktop, local server",
+    "tagline": "Every AI session in one window, with the cost in view.",
+    "summary": "A desktop app that keeps Claude Code, Codex and Gemini sessions together, keeps API and plan accounts apart, checks every file write and shows what your key spends.",
+    "cover": {
+      "kind": "image",
+      "file": "assets/screens/home.jpg",
+      "title": "Capy - Session Hub"
+    },
+    "hero": {
+      "headline": "All your AI sessions in one window, with the cost in view.",
+      "sub": "Capy keeps your Claude Code, Codex and Gemini sessions together on your PC. It keeps API and plan accounts apart, checks every file write before it happens, shows what your key spends and writes the end-of-session note for you."
+    },
+    "proof_title": "In numbers",
+    "proof": [
+      {
+        "value": "84%",
+        "label": "cheaper to draft from a written note",
+        "note": "A measured draft went from $0.061 to $0.010 when drafts moved to a smaller model. Summaries and wrap-up notes stay on the larger one.",
+        "source": "CHANGELOG, version 1.13.11",
+        "short": "cheaper drafts",
+        "icon": "wallet"
+      },
+      {
+        "value": "5",
+        "label": "unsafe actions blocked before any write",
+        "note": "A key or token written into a file, code fetched and run at once, TLS turned off, a changed execution policy and the deletion of a whole home folder.",
+        "source": "CHANGELOG, version 1.15.0",
+        "short": "unsafe actions blocked",
+        "icon": "shield-check"
+      },
+      {
+        "value": "2",
+        "label": "accounts that never mix",
+        "note": "API runs on your company key, Plan on your own subscription. Capy refuses a Plan message in a work folder or one that mentions work.",
+        "source": "HELP, section Work and Personal",
+        "short": "accounts never mixed",
+        "icon": "users"
+      },
+      {
+        "value": "90",
+        "label": "releases in 8 days",
+        "note": "From 1.0.0 on 2026-10-16 to 1.26.4 on 2026-10-23. Help lists every version and what it changed.",
+        "source": "CHANGELOG",
+        "icon": "rocket"
+      }
+    ],
+    "screens_title": "On screen",
+    "screens_lead": "Real screens from a fresh copy with no sessions, so nothing on them is anyone's work.",
+    "screens": [
+      {
+        "file": "assets/screens/home.jpg",
+        "caption": "The home screen. Pick the account, the tool and the folder, or start from a template. Read only is on by default."
+      },
+      {
+        "file": "assets/screens/templates.jpg",
+        "caption": "Start with a template: pick the task, fill in a few lines and Capy writes the message. You read it and press Send."
+      }
+    ],
+    "how": {
+      "title": "From a first message to a clean next session.",
+      "text": "Capy follows the life of a conversation, not only its start.",
+      "steps": [
+        {
+          "title": "Start",
+          "text": "Begin from a template or a blank chat. Pick the tool and the folder first. The AI reads the folder and changes nothing until you allow it."
+        },
+        {
+          "title": "Work",
+          "text": "Turn on Can change files and every write is checked first. A command, such as the tests, shows with Allow and Don't allow and runs only after you click. Undo this reply puts back what a Claude Code reply changed. Review changes shows each file as a line diff: comment on any change and send all comments in one message, or put one change back."
+        },
+        {
+          "title": "Wrap up",
+          "text": "Writes an end-of-session note: what happened, the decisions and the next steps, saved in your own vault. You can close the window while it is written."
+        },
+        {
+          "title": "Continue clean",
+          "text": "Starts a new conversation that carries only the note. The old messages stay in the old session, and replies cost less and stay on track."
+        }
+      ]
+    },
+    "tables": [
+      {
+        "title": "What leaves this computer",
+        "lead": "The app lists it in Help. The short version:",
+        "head": [
+          "What",
+          "Where it goes"
+        ],
+        "code_first": false,
+        "rows": [
+          [
+            "API messages",
+            "The company AI gateway, with your key. Keys and passwords in a message are removed first."
+          ],
+          [
+            "Plan messages",
+            "Your own account. They never carry work data."
+          ],
+          [
+            "Team knowledge search, when on",
+            "The first 300 characters of an API message, with your own sign-in."
+          ],
+          [
+            "Data catalog lookup",
+            "Table names and searches. Nothing is changed there."
+          ],
+          [
+            "Once an hour",
+            "Your name and your Capy version, so the team knows who needs an update. You can turn it off."
+          ],
+          [
+            "Only when you press a button",
+            "Feedback, Register in Knowledge and Hand over."
+          ],
+          [
+            "Stays on the PC",
+            "Your key (encrypted), attachments and Undo copies (7 days) and your sessions."
+          ]
+        ]
+      },
+      {
+        "title": "New since 2026-10-21",
+        "lead": "From the changelog, newest first. Several of these are still in validation, as the roadmap below says.",
+        "head": [
+          "Version",
+          "What it added"
+        ],
+        "rows": [
+          [
+            "1.28.0",
+            "A security round: one secret redaction for everything that leaves the PC, a stricter command check, edit mode refuses startup folders, profile folders and writes into .git, and no other site can frame Capy."
+          ],
+          [
+            "1.28.0",
+            "Pay, reviews, promotions and career stay out of the work memory, and a personal note never reaches the team queue."
+          ],
+          [
+            "1.28.0",
+            "The agents Capy installs update themselves every hour, and a scheduled task survives an error and a restart."
+          ],
+          [
+            "1.27.2",
+            "Only the newest model of each family is offered, and a chat that picks none runs on it."
+          ],
+          [
+            "1.27.1",
+            "The template gallery is a grid of short cards with search and a filter by where it runs."
+          ],
+          [
+            "1.27.0",
+            "A memory switch per conversation."
+          ],
+          [
+            "1.26.4",
+            "Capy updates itself in the background."
+          ],
+          [
+            "1.26.2",
+            "A read template can run by itself once a week while Capy is open, with a spending cap per run."
+          ],
+          [
+            "1.26.2",
+            "Save a conversation as your own template. A template that changes files shows its plan first, with an Approve button."
+          ],
+          [
+            "1.26.2",
+            "Six more templates: close a project, a team document, a data dictionary, SQL for a question, a process or governance piece, a look at a spreadsheet."
+          ],
+          [
+            "1.26.2",
+            "A conversation that edits files can work in its own copy of the repository and merge it back."
+          ],
+          [
+            "1.26.2",
+            "Work chats load the team skills, and only the MCP servers that a signed team policy allows."
+          ],
+          [
+            "1.26.2",
+            "A board of sessions by state and project, and a coach that reads each reply for a cold cache, many steps or a high cost."
+          ],
+          [
+            "1.26.1",
+            "The reply log keeps 180 days, the personal-use log and sent feedback 365 days. Older entries go once a day."
+          ],
+          [
+            "1.26.0",
+            "Capy repairs itself when its files fail the start check, by installing the same release again."
+          ],
+          [
+            "1.26.0",
+            "Review changes: comment on any change and send all comments in one message, or put one change back."
+          ],
+          [
+            "1.24.0",
+            "Save and compact works for every tool, with no new chat."
+          ],
+          [
+            "1.23.0",
+            "Gemini is a fourth assistant, on the company key only."
+          ],
+          [
+            "1.22.0",
+            "A health check tries the gateway, the knowledge search, the data catalog and Capy itself, with the time of each. Usage counts stay on the PC."
+          ],
+          [
+            "1.21.0",
+            "Steps per reply go from 6 to 40, with a Continue button. Review changes shows each changed file as a line diff."
+          ]
+        ]
+      }
+    ],
+    "limits": [
+      {
+        "title": "Windows only",
+        "text": "It is a Windows desktop app with a local server."
+      },
+      {
+        "title": "Work needs a company key",
+        "text": "API sessions run on the company AI key. Plan sessions need your own Claude or ChatGPT subscription or a local model."
+      },
+      {
+        "title": "Undo covers Claude Code replies",
+        "text": "Undo this reply restores the files a Claude Code reply changed, from copies kept for 7 days."
+      },
+      {
+        "title": "Attachments are limited",
+        "text": "Up to 5 files per message, and only documents in Work."
+      },
+      {
+        "title": "It sees this computer only",
+        "text": "Capy shows the sessions on this PC. Details opens the folder that holds a session's files."
+      }
+    ],
+    "method": "Every number comes from the product's own change log and help page. The screens are captured from a development copy started with an empty data folder on a spare port, so no session or setting of a real user appears.",
+    "scene": {
+      "steps": [
+        {
+          "x": 0.5,
+          "y": 0.5,
+          "s": 1,
+          "ms": 0,
+          "hold": 1200
+        },
+        {
+          "x": 0.56,
+          "y": 0.15,
+          "s": 1.25,
+          "ms": 1300,
+          "hold": 1400,
+          "ring": [
+            0.29,
+            0.118,
+            0.53,
+            0.058
+          ]
+        },
+        {
+          "x": 0.58,
+          "y": 0.8,
+          "s": 1.25,
+          "ms": 1300,
+          "hold": 2600,
+          "ring": [
+            0.292,
+            0.818,
+            0.69,
+            0.136
+          ],
+          "type": "Write a short status note for my project",
+          "typems": 1800
+        },
+        {
+          "x": 0.15,
+          "y": 0.3,
+          "s": 1.7,
+          "ms": 1300,
+          "hold": 1800,
+          "ring": [
+            0.005,
+            0.07,
+            0.27,
+            0.92
+          ],
+          "clear": true,
+          "swap": 0
+        },
+        {
+          "x": 0.15,
+          "y": 0.3,
+          "s": 1.7,
+          "ms": 500,
+          "hold": 2700,
+          "ring": [
+            0.008,
+            0.15,
+            0.262,
+            0.042
+          ],
+          "swap": 1,
+          "swapAt": 900,
+          "dim": false
+        },
+        {
+          "x": 0.15,
+          "y": 0.3,
+          "s": 1.7,
+          "ms": 300,
+          "hold": 2900,
+          "ring": [
+            0.008,
+            0.186,
+            0.262,
+            0.038
+          ],
+          "swap": 2,
+          "swapAt": 900,
+          "dim": false
+        },
+        {
+          "x": 0.15,
+          "y": 0.3,
+          "s": 1.7,
+          "ms": 300,
+          "hold": 3100,
+          "ring": [
+            0.066,
+            0.066,
+            0.204,
+            0.054
+          ],
+          "type": "plan",
+          "typems": 700,
+          "typeAt": [
+            0.071,
+            0.0745,
+            0.19,
+            0.038,
+            1.2
+          ],
+          "typeBg": "#F1F1F2",
+          "swap": 3,
+          "swapAt": 1400,
+          "dim": false
+        },
+        {
+          "x": 0.5,
+          "y": 0.5,
+          "s": 1,
+          "ms": 1100,
+          "hold": 800,
+          "clear": true,
+          "swap": 0
+        }
+      ],
+      "ar": 1.449,
+      "states": [
+        {
+          "file": "assets/screens/state-b.jpg",
+          "box": [
+            0,
+            0.0628,
+            0.2775,
+            0.937
+          ]
+        },
+        {
+          "file": "assets/screens/state-c.jpg",
+          "box": [
+            0,
+            0.0628,
+            0.2775,
+            0.937
+          ]
+        },
+        {
+          "file": "assets/screens/state-d.jpg",
+          "box": [
+            0,
+            0.0628,
+            0.2775,
+            0.937
+          ]
+        }
+      ],
+      "fit": 1.18
+    },
+    "impact": {
+      "figure": "84%",
+      "label": "cheaper to draft from a written note",
+      "basis": "A measured draft went from $0.061 to $0.010 when drafts moved to a smaller model.",
+      "source": "CHANGELOG, version 1.13.11"
+    },
+    "lifecycle": {
+      "state": "beta",
+      "version": "1.28.0",
+      "date": "2026-10-24",
+      "source": "Registry, read from the tool's own version file"
+    },
+    "roadmap": [
+      {
+        "title": "Look up the data catalog before a change to a table, as a required step",
+        "state": "In development"
+      },
+      {
+        "title": "Approve commands with a button in the chat",
+        "state": "In validation"
+      },
+      {
+        "title": "Count how often each agent template is used",
+        "state": "In validation"
+      },
+      {
+        "title": "Tools per agent template, with a list of allowed commands",
+        "state": "In validation"
+      },
+      {
+        "title": "Agent templates in steps that stop for approval",
+        "state": "In validation"
+      },
+      {
+        "title": "Save a good conversation as a template",
+        "state": "In validation"
+      },
+      {
+        "title": "More task templates: closing a project, documents, reports, measures, data dictionaries, spreadsheet analysis",
+        "state": "In validation"
+      },
+      {
+        "title": "A board of sessions by state and project",
+        "state": "In validation"
+      },
+      {
+        "title": "Review changes with a comment per change",
+        "state": "In validation"
+      },
+      {
+        "title": "Weekly scheduled tasks with a spending cap per run",
+        "state": "In validation"
+      },
+      {
+        "title": "A token coach that reads each reply",
+        "state": "In validation"
+      },
+      {
+        "title": "A faster first knowledge search of the day",
+        "state": "In validation"
+      }
+    ],
+    "backlog": [
+      {
+        "title": "A spending cap per person",
+        "state": "Backlog"
+      },
+      {
+        "title": "Respect sensitivity labels on attachments",
+        "state": "Backlog"
+      }
+    ],
+    "backlog_source": "Owner backlog, 2026-10-23"
+  },
+  {
+    "slug": "ai-spend-view",
+    "name": "AI Spend View",
+    "kind": "app",
+    "job": "Operations",
+    "status": "landing",
+    "glyph": "ai-spend-view",
+    "stack": [
+      "PowerShell",
+      "HTML"
+    ],
+    "runs": "Local page, daily task",
+    "tagline": "Each person sees their monthly AI spend.",
+    "summary": "Shows each person their monthly spend on an AI gateway, from a daily capture. The numbers stay on your PC and in your profile folder.",
+    "hero": {
+      "headline": "See what your AI key spent this month, without asking anyone.",
+      "sub": "AI Spend View reads your own key on the AI gateway twice a day and keeps the readings on your PC. A local page turns them into the spend since the 1st, a forecast for month end and a warning before you reach the limit you set."
+    },
+    "proof_title": "In numbers",
+    "proof": [
+      {
+        "value": "2",
+        "label": "reads a day, plus one at startup",
+        "note": "A scheduled task reads the gateway at 09:00 and 17:00, and when the PC starts if a time passed while it was off.",
+        "source": "README, section Captura automática",
+        "short": "reads a day"
+      },
+      {
+        "value": "3 days",
+        "label": "is the longest gap for an exact month",
+        "note": "The month figure is exact when a reading exists up to 3 days before the 1st or on the 1st. With the daily capture there is always one. Without it the page shows a range and marks it incomplete.",
+        "source": "README, section O que faz; CHANGELOG, version 1.3",
+        "short": "longest gap, exact month"
+      },
+      {
+        "value": "2",
+        "label": "warnings a month, one at each mark",
+        "note": "A Windows notice at 80% and another at 100% of the limit you entered, once each per month.",
+        "source": "README, section Captura automática",
+        "short": "warnings a month"
+      },
+      {
+        "value": "4",
+        "label": "team-level calls an ordinary key cannot make",
+        "note": "User, team, key-list and spend-log queries return 403 for a normal key. The page therefore shows your own spend and nobody else's.",
+        "source": "README, section O que faz"
+      }
+    ],
+    "how": {
+      "title": "Read twice a day, compute on your PC.",
+      "text": "The gateway reports one running total per key. It does not report the month. The page computes the month from your own readings, and says how sure it is.",
+      "steps": [
+        {
+          "title": "Install once",
+          "text": "Run the installer. It stores your key encrypted for your Windows user, asks for your monthly limit, creates the scheduled task and puts a shortcut on the desktop. No admin rights."
+        },
+        {
+          "title": "Capture",
+          "text": "Each run reads the key total from the gateway and appends it to a history file in your own profile folder. It also refreshes the model price table."
+        },
+        {
+          "title": "Compute",
+          "text": "The spend since the 1st is the sum of the rises between readings. A drop of more than 1 cent counts as a key reset. A smaller drop is rounding noise and counts as zero."
+        },
+        {
+          "title": "Show and warn",
+          "text": "The local page shows the month spend against your limit, a month-end forecast and the price per model. Windows warns you at 80% and 100%, and when the gateway refuses the balance query."
+        }
+      ]
+    },
+    "tables": [
+      {
+        "title": "Two totals, two meanings",
+        "lead": "The page shows both so a key total above your limit does not look like an overrun.",
+        "head": [
+          "",
+          "Total on the key",
+          "Spend this month"
+        ],
+        "code_first": false,
+        "rows": [
+          [
+            "Where it comes from",
+            "The gateway, as is",
+            "Computed from your readings"
+          ],
+          [
+            "Resets on the 1st",
+            "No",
+            "Yes"
+          ],
+          [
+            "Compared with your limit",
+            "No",
+            "Yes"
+          ],
+          [
+            "Exact",
+            "Always",
+            "With a reading up to 3 days before the 1st"
+          ]
+        ]
+      }
+    ],
+    "limits": [
+      {
+        "title": "Windows only",
+        "text": "The capture is a PowerShell task and the warnings are Windows notices."
+      },
+      {
+        "title": "You enter your own limit",
+        "text": "The gateway does not report a monthly cap for a normal key. The page compares your spend with the number you typed at install, and says so when you left it blank."
+      },
+      {
+        "title": "The month can be a range",
+        "text": "With no reading near the 1st, the page shows at least what rose since the first reading of the month and marks it incomplete. It never shows the whole key total as the month."
+      },
+      {
+        "title": "No team view",
+        "text": "A normal key reads only its own total and the model list. Spend for a team needs the people who run the gateway."
+      },
+      {
+        "title": "Opened files do not share a browser",
+        "text": "The page keeps manual readings in the browser. Another browser, or a localhost address, starts with its own empty store. The captured readings appear in all of them."
+      },
+      {
+        "title": "No automated tests",
+        "text": "The tool has a change log and a manual check, but no test suite yet."
+      }
+    ],
+    "method": "Statements come from the tool's own README and change log, and from reading its capture script. The two rules in the viewer were run on made-up numbers in a scratch folder. The capture itself was not run, because it calls the live gateway with a real key. The amounts are invented.",
+    "viewer_lead": "The two rules that decide what the page shows, copied from the capture script with the comments translated, each run on made-up numbers in a scratch folder. The real capture needs a live gateway call with a real key, so it was not run.",
+    "viewer": [
+      {
+        "tab": "Month spend rule",
+        "source": "assets/src/month-rule.cmd.txt",
+        "caption": "The gateway gives a running total. The month figure is the sum of rises between your readings, with a reset detected by a drop of more than 1 cent.",
+        "output": "assets/src/month-rule.out.txt"
+      },
+      {
+        "tab": "Warning rule",
+        "source": "assets/src/warn-rule.cmd.txt",
+        "caption": "One notice per mark per month, against the limit you entered. With no limit entered, no notice fires.",
+        "output": "assets/src/warn-rule.out.txt"
+      }
+    ],
+    "lifecycle": {
+      "state": "in use",
+      "version": "1.5",
+      "date": "2026-10-08",
+      "source": "Changelog"
+    },
+    "roadmap": [],
+    "backlog": [],
+    "cover": {
+      "kind": "terminal",
+      "file": "assets/cover.txt",
+      "title": "spend view"
+    }
+  },
+  {
+    "slug": "autodev",
+    "name": "Autodev",
+    "kind": "agent",
+    "job": "Building",
+    "status": "landing",
+    "glyph": "autodev",
+    "stack": [
+      "Node",
+      "OpenCode"
+    ],
+    "runs": "Local runner",
+    "tagline": "Free models build, Claude plans and reviews.",
+    "summary": "An OpenCode model executes the task, Claude plans and reviews, and the tests are checked by mutation. Code waits for your ok. A team lead step caps how much work the free model gets.",
+    "hero": {
+      "headline": "Let a free model write the change. Check it with code, then with a review.",
+      "sub": "Autodev splits the work. Claude writes a task and reviews the result. A free model, run through OpenCode, makes the edits in an isolated worktree. A script checks scope, size, secrets and every test. Nothing is pushed without your ok. It runs on a personal project, with no company data and no company key.",
+      "command": "node dev/autodev/run.mjs T002"
+    },
+    "proof_title": "In numbers",
+    "proof": [
+      {
+        "value": "30",
+        "label": "checks every task must pass",
+        "note": "The 26 tests and 4 validators that npm test runs, plus the task's own gate. The list is read from the main branch, so the model cannot shorten it.",
+        "source": "assets/measurements.md",
+        "short": "checks per task"
+      },
+      {
+        "value": "0",
+        "label": "bad versions survived the last review",
+        "note": "Mutation review of the one task so far: 3 of 5 broken copies passed the test on attempt 1, 1 of 8 on attempt 2, none on attempt 3.",
+        "source": "docs/autodev.md, section Review that the gates cannot do",
+        "short": "bad versions left"
+      },
+      {
+        "value": "66",
+        "label": "lines in the one landed task",
+        "note": "A code change plus its test, produced by a free model in 156 seconds of executor time on the last attempt.",
+        "source": "assets/measurements.md",
+        "short": "lines in the one task"
+      },
+      {
+        "value": "2",
+        "label": "retries at most",
+        "note": "A bounced task goes back with the reviewer's text. After the third attempt it goes to the owner.",
+        "source": "docs/autodev.md, section Review that the gates cannot do"
+      },
+      {
+        "value": "4",
+        "label": "executor runs a day at most",
+        "note": "The team lead also caps attempts at 3 per task, open tasks at 1 and new tasks at 2 a week, and checks that a task fits before a run is spent.",
+        "source": "docs/autodev.md, section Team lead",
+        "short": "executor runs a day at most"
+      }
+    ],
+    "viewer_lead": "One task file in, one result record out. The task is an example; the result and the review numbers come from the one real run.",
+    "viewer": [
+      {
+        "tab": "Task in, record out",
+        "source": "assets/src/task.cmd.txt",
+        "output": "assets/src/task.out.txt",
+        "caption": "A task names the files the model may edit, the gates it must pass and a size limit. The record keeps the exit code of every gate."
+      },
+      {
+        "tab": "What the checker blocks",
+        "source": "assets/src/scope.cmd.txt",
+        "output": "assets/src/scope.out.txt",
+        "caption": "After the model stops, a script compares the changes with the task. A red result bounces the task and no review is spent."
+      },
+      {
+        "tab": "Mutation review",
+        "source": "assets/src/mutation.cmd.txt",
+        "output": "assets/src/mutation.out.txt",
+        "caption": "The first task passed every machine check and its test still proved nothing. Breaking the code on purpose showed it."
+      }
+    ],
+    "how": {
+      "title": "Claude plans, a free model edits, code checks, Claude reviews.",
+      "text": "Each step has one owner. The model that edits never decides whether its own work is good.",
+      "steps": [
+        {
+          "title": "Plan",
+          "text": "Claude reads the weekly report and the answer log, then writes one file per task. Only the task text goes to the free model, never the logs."
+        },
+        {
+          "title": "Execute",
+          "text": "The runner resets an isolated worktree to main and runs the task with an OpenCode model. The default is a free one, and --model changes it."
+        },
+        {
+          "title": "Check",
+          "text": "No model involved. Only allowed files changed, no forbidden path, the diff is under the limit, no secret in the added lines, and every check exits 0."
+        },
+        {
+          "title": "Review",
+          "text": "Claude reads the diff against the task in a clean session and breaks the changed code on purpose to see that the new test fails."
+        },
+        {
+          "title": "Land",
+          "text": "land commits in the worktree and fast-forwards main. It never pushes. Deploy needs the owner's ok. A task that only adds new test files lands on its own, still without a push."
+        }
+      ]
+    },
+    "tables": [
+      {
+        "title": "What the executor can do",
+        "head": [
+          "",
+          "Allowed"
+        ],
+        "rows": [
+          [
+            "Edit",
+            "Any file except the runner, the task files, the deploy script, the test list, config, secrets, photos and the sync folder."
+          ],
+          [
+            "Read",
+            "Everything except secrets, the sync folder, photos and the content banks. A hosted free model is assumed to log prompts, so that content stays with Claude."
+          ],
+          [
+            "Shell",
+            "Only node dev/test-*, node dev/validate-*, git status and git diff."
+          ],
+          [
+            "Network",
+            "None. The web fetch and execute tools are denied."
+          ]
+        ]
+      },
+      {
+        "title": "What the team lead allows",
+        "lead": "A step of the weekly routine plus a gate in the runner. No model is involved, and the executor cannot edit it.",
+        "head": [
+          "Limit",
+          "Value"
+        ],
+        "rows": [
+          [
+            "Executor runs in 24 hours",
+            "4"
+          ],
+          [
+            "Attempts per task",
+            "3, then it goes to the owner"
+          ],
+          [
+            "Open tasks at once",
+            "1"
+          ],
+          [
+            "New tasks per week",
+            "2"
+          ],
+          [
+            "Paths a task may allow",
+            "2, only app scripts, test files, validators and the shared library"
+          ],
+          [
+            "Lines changed",
+            "150 at most"
+          ],
+          [
+            "Task text",
+            "450 words at most, with an acceptance command and a named source"
+          ]
+        ]
+      }
+    ],
+    "limits": [
+      {
+        "title": "A personal project only",
+        "text": "The free model is outside the company's approved AI. Autodev runs on a personal study app that holds no company data, and it never sees a company key."
+      },
+      {
+        "title": "One task so far",
+        "text": "The page rests on a single landed task. It is not a success rate, and there is no measured saving against writing the change by hand."
+      },
+      {
+        "title": "The lead's limits rest on one task",
+        "text": "They are a narrow start, not a measured throughput. They widen only after 10 landed tasks, and the first task would not pass them today: it allowed 200 lines."
+      },
+      {
+        "title": "It tests logic, not screens",
+        "text": "A change to the interface needs a browser check by Claude before it lands."
+      },
+      {
+        "title": "A green test can still be empty",
+        "text": "The first task passed every machine check with a test that proved nothing. Claude samples the auto-landed tests in a weekly pass."
+      },
+      {
+        "title": "Setup is slow once",
+        "text": "Creating the isolated worktree took about 7 minutes in the app that uses it, because of its audio files. It happens once."
+      },
+      {
+        "title": "Free model names change",
+        "text": "If a model disappears, pass --model. opencode-cli models lists what is available."
+      },
+      {
+        "title": "It depends on one tool version",
+        "text": "The agent rules were worked out on OpenCode 2.0.30. A wrong form of one setting drops the whole agent file without a clear error."
+      }
+    ],
+    "method": "Counts read on 2026-10-20 from the files of the one app that uses Autodev. The check count comes from the test list parsed by the runner's own helper. The run figures come from the record of the single landed task. Nothing was re-run against a model. The mutation figures come from the project's own notes on that task.",
+    "cover": {
+      "kind": "terminal",
+      "file": "assets/cover.txt",
+      "title": "autodev"
+    },
+    "headline": [
+      {
+        "value": "1",
+        "short": "task landed so far",
+        "label": "task landed so far",
+        "note": "A change to the review order of a practice round in the app it serves, with a test that comes with it.",
+        "source": "tasks/runs, assets/measurements.md",
+        "icon": "rocket"
+      },
+      {
+        "value": "3",
+        "short": "attempts before review accepted it",
+        "label": "attempts before review accepted it",
+        "note": "The first attempt had 3 of 5 broken copies passing its test, the second 1 of 8, the third none.",
+        "source": "docs/autodev.md, section Review that the gates cannot do",
+        "icon": "list-checks"
+      },
+      {
+        "value": "66 lines",
+        "short": "in the landed change, 156 s",
+        "label": "in the landed change, 156 s of executor time",
+        "note": "A code change plus its test, produced by a free model.",
+        "source": "assets/measurements.md",
+        "icon": "gauge"
+      }
+    ],
+    "lifecycle": {
+      "state": "in use",
+      "source": "Registry, read from the tool's own version file",
+      "version": "1.0.0",
+      "date": "2026-10-23"
+    },
+    "roadmap": [],
+    "backlog": []
+  },
+  {
+    "slug": "study-quest",
+    "name": "Study Quest",
+    "kind": "app",
+    "job": "Learning",
+    "status": "landing",
+    "tagline": "A language-study game with a save state.",
+    "summary": "Flashcards and battles over a study plan, with a save state. Study answers sync back to your notes vault.",
+    "stack": [
+      "Node",
+      "Vercel functions"
+    ],
+    "runs": "Hosted web app",
+    "glyph": "study-quest",
+    "hero": {
+      "headline": "A language-study game that goes easy on missed days.",
+      "sub": "Study Quest wraps a study plan in a map, flashcards and turn-based battles. Each answer is a move, a wrong one comes back as a rematch, and a missed week never leaves you stuck. Your answers flow to your own notes, and the game never writes there."
+    },
+    "proof_title": "In numbers",
+    "proof": [
+      {
+        "value": "30",
+        "label": "checks behind every deploy",
+        "note": "One command runs all of them, and the deploy script and the CI workflow call the same list. All 30 passed on 2026-10-24.",
+        "source": "assets/measurements.md",
+        "short": "checks per deploy"
+      },
+      {
+        "value": "81",
+        "label": "cases for the answer checker",
+        "note": "The checker decides if a typed answer is right, a small slip or wrong. The same code runs in battles, in practice and in the tests.",
+        "source": "assets/measurements.md",
+        "short": "cases for the checker"
+      },
+      {
+        "value": "30",
+        "label": "HP, the most a missed stretch can cost",
+        "note": "The first missed day costs nothing. After that each day costs 10 HP up to 30, and you can still play at 0 HP.",
+        "source": "docs/motor.md, section 3",
+        "short": "HP, the most a miss costs"
+      },
+      {
+        "value": "96",
+        "label": "verbs, each with its own review box",
+        "note": "A correct answer moves a verb up a box and a wrong one moves it down. Boxes come back after 1, 3, 7, 14 and 30 days.",
+        "source": "README, section v57; docs/motor.md, section 16"
+      }
+    ],
+    "viewer_lead": "Real runs of the project's own checks. They use an in-memory fake database, so nothing real is read or written.",
+    "viewer": [
+      {
+        "tab": "The full check list",
+        "source": "assets/src/suite.cmd.txt",
+        "output": "assets/src/suite.out.txt",
+        "caption": "One command runs every check and prints the failures. A new test counts only once it is in that list."
+      },
+      {
+        "tab": "Monsters grow with you",
+        "source": "assets/src/foe.cmd.txt",
+        "output": "assets/src/foe.out.txt",
+        "caption": "The first fight with a guardian is at the lesson level. After you win, the rematch follows your level, with more HP and a stronger attack."
+      },
+      {
+        "tab": "Real data stays out",
+        "source": "assets/src/guard.cmd.txt",
+        "output": "assets/src/guard.out.txt",
+        "caption": "The server refuses a database whose label does not match the deployment. Tests and the dev server use a fake one."
+      }
+    ],
+    "how": {
+      "title": "Learn, fight, review.",
+      "text": "The game state lives in the app. What you study flows one way, to your notes.",
+      "steps": [
+        {
+          "title": "Learn",
+          "text": "Every guardian on the map has a lesson first: a rule, examples with audio, the common mistake and a short check without HP loss. Fighting before the lesson asks you first."
+        },
+        {
+          "title": "Fight",
+          "text": "Each question is a move: listen, grammar, read or speak. A move has 4 uses. A monster is weak to one type and resists another. A wrong answer returns as a rematch after 2 other questions."
+        },
+        {
+          "title": "Review",
+          "text": "Lines from lessons, nouns and verbs sit in review boxes with growing gaps. A weekly report counts answers by skill from the same log, with no model in between."
+        },
+        {
+          "title": "Sync",
+          "text": "A script on your PC pulls answers and minutes from the app into your own tracker. The app never writes to your notes, and your notes never receive anything that did not pass through that script."
+        }
+      ]
+    },
+    "tables": [
+      {
+        "title": "How strict the checker is",
+        "lead": "A typo against a weak monster weakens the hit and costs no HP. Stronger monsters tolerate fewer slips.",
+        "head": [
+          "Monster level",
+          "Strictness",
+          "Letters forgiven",
+          "Hit after a slip",
+          "Missing umlaut"
+        ],
+        "code_first": false,
+        "rows": [
+          [
+            "1 to 5",
+            "Light",
+            "1 up to 4 letters, 2 up to 10, else 3",
+            "75%",
+            "A slip"
+          ],
+          [
+            "6 to 10",
+            "Medium",
+            "1 for a word, 2 for a phrase, 3 for a long phrase",
+            "50%",
+            "A slip"
+          ],
+          [
+            "11 to 15",
+            "High",
+            "Same as medium",
+            "25%",
+            "An error"
+          ],
+          [
+            "16 and above, boss",
+            "Full",
+            "1, only in a phrase over 24 letters; a noun's capital letter counts",
+            "25%",
+            "An error"
+          ]
+        ]
+      },
+      {
+        "title": "Rules that keep it playable",
+        "head": [
+          "Situation",
+          "What happens"
+        ],
+        "rows": [
+          [
+            "HP reaches 0",
+            "You faint, wake up with 50% HP and lose 10% of your coins. XP, items, streak and map stay."
+          ],
+          [
+            "HP over time",
+            "It grows 10 per hour, even with the app closed."
+          ],
+          [
+            "Back after 3 or more days",
+            "The daily mission pays double XP and comes with a healing potion."
+          ],
+          [
+            "Fleeing a battle",
+            "Costs 5 coins and no HP."
+          ],
+          [
+            "Places",
+            "Never locked. The map shows the monster level and the level it recommends."
+          ],
+          [
+            "Wrong options",
+            "Three choices always. A test fails if the right answer is the longest too often."
+          ]
+        ]
+      },
+      {
+        "title": "New since 2026-10-23",
+        "lead": "From the project's release notes, newest first.",
+        "head": [
+          "Version",
+          "What it added"
+        ],
+        "rows": [
+          [
+            "v63",
+            "A clean edition: one command builds the engine with one content pack, with no personal names, no photos and no work documents, and checks itself."
+          ],
+          [
+            "v62",
+            "A content pack can bring its own title, greeting, class, ranks, move and monster names, and hide what only one language needs."
+          ],
+          [
+            "v61",
+            "The engine asks the pack which language it teaches; a second pack, a small Mandarin demo with its own answer rules, runs on the same engine."
+          ],
+          [
+            "v60",
+            "The content is written as YAML files, one lesson, place or character per file, and the code modules are generated from them."
+          ],
+          [
+            "v59",
+            "The content tree written as YAML and read back byte for byte, with a schema for the slide types."
+          ]
+        ]
+      }
+    ],
+    "limits": [
+      {
+        "title": "Built for one player",
+        "text": "There is one account with one save per subject. The app is a personal build, not a product packaged for other people."
+      },
+      {
+        "title": "You host it",
+        "text": "It needs a Vercel project and an Upstash Redis database. Sign-in is a passphrase of 12 characters or more, or a Google account on an allowed list."
+      },
+      {
+        "title": "The state lives in one database",
+        "text": "Level, coins, items and the review schedule exist only there. The sync script keeps dated backups on your PC, and a restore needs a flag to run."
+      },
+      {
+        "title": "Some check-ins are self-declared",
+        "text": "Minutes studied in another language app come from a tap, because that app has no official API."
+      },
+      {
+        "title": "Rank is not a grade",
+        "text": "Level measures effort. Rank rises only on real milestones read from your tracker, and the mock exam inside the game does not replace a real one."
+      },
+      {
+        "title": "Project notes are in Portuguese",
+        "text": "The README and the rules file are written in Portuguese. The interface comes in English, Portuguese and German, and English is the default."
+      }
+    ],
+    "method": "Counts come from the project's own README, rules file and tests, and from running the test suite once on 2026-10-21 against the in-memory fake database. The check list and demo outputs are real runs, trimmed to the lines shown. No screenshots are shown because the game screens carry personal content.",
+    "cover": {
+      "kind": "terminal",
+      "file": "assets/cover.txt",
+      "title": "study quest"
+    },
+    "lifecycle": {
+      "state": "in use",
+      "version": "v63",
+      "date": "2026-10-24",
+      "source": "Registry, read from the tool's own version file"
+    },
+    "roadmap": [],
+    "backlog": []
+  },
+  {
+    "slug": "knowledge-qa",
+    "name": "Team Knowledge Q&A",
+    "kind": "app",
+    "job": "Knowledge",
+    "status": "landing",
+    "glyph": "knowledge-qa",
+    "stack": [
+      "Python",
+      "FastAPI"
+    ],
+    "runs": "Hosted app",
+    "tagline": "Answers that carry their source.",
+    "summary": "A knowledge layer for a team: pages, search and answers with their source. Every page has an owner, a class and a link to where it came from.",
+    "hero": {
+      "headline": "Ask the team's pages. Get the answer and the page it came from.",
+      "sub": "Team Knowledge Q&A keeps a team's decisions, lessons and how-tos as pages in tables on a hosted data platform. People and agents search them and ask questions. Every answer lists the pages behind it, and a question with no page behind it becomes a gap that someone can take."
+    },
+    "proof_title": "In numbers",
+    "proof": [
+      {
+        "value": "104",
+        "label": "automated tests pass",
+        "note": "They cover permissions, versions, the answer path, the agent interface and the vault import. Each test builds its own temporary store.",
+        "source": "assets/measurements.md",
+        "short": "automated tests"
+      },
+      {
+        "value": "90%",
+        "label": "of 20 test questions found the right page in the top 5",
+        "note": "Vector search on the project's own questions, against 30% for the keyword search the app uses today. Questions were written from pages chosen first, so real questions will score lower.",
+        "source": "README.md, section Search quality (eval/)",
+        "short": "right page in the top 5"
+      },
+      {
+        "value": "5",
+        "label": "tools for agents over MCP",
+        "note": "Search pages, get a page, list gaps, report a gap and a review summary. They follow the same visibility rules as the screens.",
+        "source": "app/mcp.py; assets/measurements.md",
+        "short": "tools over MCP"
+      },
+      {
+        "value": "38",
+        "label": "API routes behind the screens",
+        "note": "Pages, versions, search, ask, comments, gaps and decisions. A page can be read, saved and restored without the screens.",
+        "source": "assets/measurements.md"
+      }
+    ],
+    "viewer_lead": "Real requests to the app running in a scratch folder with 2 invented pages. The request on the left, the response on the right, trimmed to the fields that matter.",
+    "viewer": [
+      {
+        "tab": "Answer with its source",
+        "source": "assets/src/ask.cmd.txt",
+        "output": "assets/src/ask.out.txt",
+        "caption": "The answer lists the page it used with its owner, status and whether anyone verified it. No language model was attached in this run, so the app returned the sources without prose. With a model attached, the answer cites them as [1], [2]."
+      },
+      {
+        "tab": "No page, no answer",
+        "source": "assets/src/gap.cmd.txt",
+        "output": "assets/src/gap.out.txt",
+        "caption": "A question that matches no page comes back as unanswered instead of a guess. The app can turn it into a gap page for an owner to take."
+      },
+      {
+        "tab": "What a save refuses",
+        "source": "assets/src/refused.cmd.txt",
+        "output": "assets/src/refused.out.txt",
+        "caption": "A page without a source link is refused. Text about a person's pay, health, identity or a credential is refused with no override."
+      }
+    ],
+    "how": {
+      "title": "A page in, an answer out, and a gap when nothing fits.",
+      "text": "Pages live in tables. A small FastAPI app serves the screens, the API and an MCP endpoint from the same code.",
+      "steps": [
+        {
+          "title": "Write",
+          "text": "A page has a type, an owner, a classification, a source link and a review date. Every save is a new version, with a diff against the last one."
+        },
+        {
+          "title": "Keep",
+          "text": "Verified pages carry a badge with a review date. Changing the title or the text removes the badge. Two people saving at once get a conflict, not a silent overwrite."
+        },
+        {
+          "title": "Ask",
+          "text": "Search finds pages by keyword, with typo correction. Ask returns the pages it used, and an attached model writes the answer from them. Restricted pages never enter search or answers."
+        },
+        {
+          "title": "Close the gap",
+          "text": "A question with no page becomes a gap page. Anyone can take it, and nobody else can take it once it is taken."
+        }
+      ]
+    },
+    "tables": [
+      {
+        "title": "Rules the app enforces",
+        "lead": "Each rule has a test in the project.",
+        "head": [
+          "Rule",
+          "What happens"
+        ],
+        "code_first": false,
+        "rows": [
+          [
+            "No page without a source",
+            "The save is refused unless the source is a link or a known reference."
+          ],
+          [
+            "Pay, health, identity, credentials",
+            "Hard groups are refused. Softer groups, such as a promotion stage, need the author to confirm once."
+          ],
+          [
+            "Restricted pages",
+            "Visible to the owner, the space owner and the author. Never in search, answers or the agent interface for anyone else."
+          ],
+          [
+            "Raw HTML in a page",
+            "Not rendered."
+          ],
+          [
+            "Project and agent spaces",
+            "Created by the owners of the app. Anyone can create a topic space."
+          ]
+        ]
+      },
+      {
+        "title": "Page types",
+        "head": [
+          "Group",
+          "Types"
+        ],
+        "code_first": false,
+        "rows": [
+          [
+            "Team knowledge",
+            "decision, lesson, process, howto, page, gap"
+          ],
+          [
+            "Agent package",
+            "agent-charter, agent-sources, agent-autonomy, agent-rules, agent-runbook, agent-handoff"
+          ]
+        ]
+      }
+    ],
+    "agents": {
+      "title": "Built for agents to call",
+      "text": "An MCP endpoint and a small API let an agent look things up and report what is missing. Callers sign in with the platform, and a script or agent can use a service identity.",
+      "tools": [
+        {
+          "name": "search_pages",
+          "text": "Search with the same visibility rules as the screens."
+        },
+        {
+          "name": "get_page",
+          "text": "Read one page, if the caller may see it."
+        },
+        {
+          "name": "list_gaps",
+          "text": "List the questions that no page answers."
+        },
+        {
+          "name": "report_gap",
+          "text": "Record a question as a gap that nobody has taken."
+        },
+        {
+          "name": "review_summary",
+          "text": "Titles and links of pages due for review, with no page text."
+        }
+      ],
+      "snippet": "GET  /api/search?q=refresh report\nPOST /api/ask   {\"question\": \"...\", \"history\": []}\nPOST /api/gaps\nPOST /api/decisions"
+    },
+    "limits": [
+      {
+        "title": "Search is keyword-only until the index exists",
+        "text": "The vector index needs a schema and a scheduled job that are not in place. Until then the app finds pages by keyword, which put the right page in the top 5 for 30% of the 20 test questions."
+      },
+      {
+        "title": "Data is lost on redeploy without the tables",
+        "text": "Without the schema and its grants, the app falls back to a SQLite file that resets on every deploy or restart."
+      },
+      {
+        "title": "The answer needs an attached model",
+        "text": "Without one, the app returns the sources and no written answer."
+      },
+      {
+        "title": "The agent interface is not proven yet",
+        "text": "The MCP endpoint passes its tests. A first connection from a real agent builder has not been tried."
+      },
+      {
+        "title": "The eval is small",
+        "text": "20 questions in one language, each written from a page chosen first. Treat 90% as an upper bound."
+      },
+      {
+        "title": "Bound to one platform",
+        "text": "Storage, identity and the index use the hosted data platform. A local SQLite mode exists for development only."
+      }
+    ],
+    "method": "Test, route, tool and table counts were taken on 2026-10-20 from the project's code, and the tests ran offline against temporary stores. The demo requests ran in process against a scratch SQLite store with 2 invented pages, so no real page or table was read. Search quality is the project's own eval of 2026-10-15 and was not rerun.",
+    "cover": {
+      "kind": "terminal",
+      "file": "assets/cover.txt",
+      "title": "knowledge-qa"
+    },
+    "impact": {
+      "figure": "30% to 90%",
+      "label": "of test questions found the right page in the top 5",
+      "basis": "20 test questions, vector search against 30% for the keyword search the app uses today. The questions were written from chosen pages, so real questions will score lower.",
+      "source": "README.md, section Search quality"
+    },
+    "lifecycle": {
+      "state": "in use",
+      "source": "Registry, read from the tool's own version file",
+      "version": "0.1.0",
+      "date": "2026-10-19"
+    },
+    "roadmap": [],
+    "backlog": []
+  },
+  {
+    "slug": "team-memory-agent",
+    "name": "Team Memory Agent",
+    "kind": "agent",
+    "job": "Knowledge",
+    "status": "landing",
+    "glyph": "team-memory-agent",
+    "stack": [
+      "Python",
+      "Parquet",
+      "DuckDB"
+    ],
+    "runs": "Windows scheduled tasks, private lake in OneDrive",
+    "tagline": "Daily meetings become a weekly record.",
+    "summary": "Captures every hour and consolidates by code. A week becomes record only after you approve it.",
+    "hero": {
+      "headline": "Daily meetings become a weekly record, and you approve it first.",
+      "sub": "Team Memory Agent captures a team's daily meeting records every hour and writes one weekly draft. Plain code does the merge, so every line traces to a dated source. The week enters the record only after its owner reads it and says yes.",
+      "command": "python tma_publish.py --week 2026-W35 --approve --reviewer \"<owner>\""
+    },
+    "proof_title": "In numbers",
+    "proof": [
+      {
+        "value": "0",
+        "label": "models in the merge",
+        "note": "Consolidation and publication are deterministic code. Models write the meeting summaries upstream and translate titles locally, and the docs say so.",
+        "source": "GOVERNANCE.md, rule No model in the merge",
+        "short": "models in the merge"
+      },
+      {
+        "value": "23",
+        "label": "sensitive-content patterns",
+        "note": "English and Portuguese patterns for health, pay and dismissal flag a draft. The list helps the reader. The reader is the gate.",
+        "source": "assets/measurements.md",
+        "short": "sensitive patterns"
+      },
+      {
+        "value": "10",
+        "label": "tests, on synthetic data",
+        "note": "They cover the raw layer, the consent rule, the deterministic rebuild and the guard against the real data. Capture is not covered.",
+        "source": "assets/measurements.md",
+        "short": "synthetic-data tests"
+      },
+      {
+        "value": "54 s to under 2 s",
+        "label": "to sync when nothing has changed",
+        "note": "Each layer is rebuilt only when its inputs changed, checked by a hash. Recorded in the project README on 2026-10-07.",
+        "source": "README.md, section The lake; assets/measurements.md"
+      }
+    ],
+    "viewer_lead": "What is real here: the test names, the reviewer checklist and the layout, taken from the product files. None of it is a run on meeting data.",
+    "viewer": [
+      {
+        "tab": "The approval step",
+        "source": "assets/src/approve.cmd.txt",
+        "output": "assets/src/approve.out.txt",
+        "caption": "The first command validates the draft and prints what a machine cannot check. The second writes the week to the record, and only the owner runs it."
+      },
+      {
+        "tab": "How the record is stored",
+        "source": "assets/src/lake.cmd.txt",
+        "output": "assets/src/lake.out.txt",
+        "caption": "Originals are never edited. Everything above them is rebuilt from them, and queries run in memory so a synced database file cannot corrupt."
+      },
+      {
+        "tab": "What the tests check",
+        "source": "assets/src/tests.cmd.txt",
+        "output": "assets/src/tests.out.txt",
+        "caption": "The names are the specification: append-only originals, a recording marked no-consent never enters, and a guard that refuses to run tests against real data."
+      }
+    ],
+    "how": {
+      "title": "Capture, consolidate, approve.",
+      "text": "Each layer reads only the one before it. The only step a person owns is the last one.",
+      "steps": [
+        {
+          "title": "Capture",
+          "text": "Every hour it reads new meeting summaries and writes one immutable daily record per meeting."
+        },
+        {
+          "title": "Consolidate",
+          "text": "On Fridays deterministic code turns the daily records into one weekly draft. Reruns are byte-identical, and contradictions are shown, not resolved."
+        },
+        {
+          "title": "Approve",
+          "text": "The owner reads the draft and deletes what should not be there. The sensitive-content check runs on the edited text, so deleting a passage clears its flag."
+        },
+        {
+          "title": "Keep",
+          "text": "An approved week is stored in the record. Nothing publishes to a shared library on its own, and the approved copy is kept because no rebuild can recreate a human decision."
+        }
+      ]
+    },
+    "tables": [
+      {
+        "title": "Scheduled tasks",
+        "head": [
+          "Task",
+          "Runs",
+          "Does"
+        ],
+        "code_first": false,
+        "rows": [
+          [
+            "Capture",
+            "Hourly",
+            "Reads new sources, writes daily records, syncs the lake"
+          ],
+          [
+            "Insight window",
+            "Daily",
+            "Fetches the meeting recaps and keeps a raw copy"
+          ],
+          [
+            "Weekly",
+            "Hourly",
+            "Consolidates on Fridays and files away weeks the owner approved"
+          ],
+          [
+            "Health",
+            "Weekdays, evening",
+            "Reads each task's last result and every lake run, then sends an alert on a failure"
+          ]
+        ]
+      },
+      {
+        "title": "What the validator refuses",
+        "lead": "Deterministic checks only. Rules a machine cannot check are printed as a checklist, never marked as passed.",
+        "head": [
+          "Check",
+          "Result if it fails"
+        ],
+        "rows": [
+          [
+            "Front matter missing or unreadable",
+            "Approval refused"
+          ],
+          [
+            "Status is not draft, or the week does not match the filename",
+            "Approval refused"
+          ],
+          [
+            "One of 7 required headings is missing",
+            "Approval refused"
+          ],
+          [
+            "No dated source listed, or a source count of zero",
+            "Approval refused"
+          ],
+          [
+            "A sensitive-content pattern is found",
+            "Flag, cleared by editing the text or by stating a reason"
+          ]
+        ]
+      }
+    ],
+    "limits": [
+      {
+        "title": "One owner",
+        "text": "It is built for one person and one machine. There is no multi-user review flow."
+      },
+      {
+        "title": "Approval is manual",
+        "text": "The quality of the record depends on the reader. The pattern list is a helper and misses what it does not name."
+      },
+      {
+        "title": "Quiet days stay empty",
+        "text": "A day with only a transcript carries no notes, decisions or actions until someone writes them in or a summary arrives."
+      },
+      {
+        "title": "Recaps depend on the source",
+        "text": "If the source tool generates no summary that day, there is nothing to capture, and the agent cannot tell why."
+      },
+      {
+        "title": "Tests cover the lake",
+        "text": "The 10 tests run on synthetic data and cover the storage layer and the series title. Capture and consolidation have no automated test."
+      },
+      {
+        "title": "Nothing is exposed as a service",
+        "text": "It runs as scheduled tasks and a command line. There is no screen to open."
+      }
+    ],
+    "method": "Counts taken on 2026-10-20 by reading the source files and the documentation. Nothing was run and no meeting data was opened. The sync times come from the project documentation, recorded on 2026-10-06 and 2026-10-07.",
+    "impact": {
+      "figure": "54 s to under 2 s",
+      "label": "to sync when nothing has changed",
+      "basis": "Each layer is rebuilt only when its inputs changed. Recorded on 2026-10-07.",
+      "source": "README.md, section The lake"
+    },
+    "lifecycle": {
+      "state": "in use",
+      "source": "Registry, read from the tool's own version file",
+      "version": "1.0.0",
+      "date": "2026-10-23"
+    },
+    "roadmap": [],
+    "backlog": [],
+    "cover": {
+      "kind": "terminal",
+      "file": "assets/cover.txt",
+      "title": "team memory agent"
+    }
+  },
+  {
+    "slug": "vault-mcp",
+    "name": "Vault MCP",
+    "kind": "mcp",
+    "job": "Knowledge",
+    "status": "landing",
+    "glyph": "vault-mcp",
+    "stack": [
+      "Python"
+    ],
+    "runs": "Local MCP server",
+    "tagline": "Let Claude read and write your notes vault, on your own machine.",
+    "summary": "An MCP server for the backlog, daily logs and briefs of a notes vault. 13 tools, no model inside, nothing leaves the PC.",
+    "hero": {
+      "headline": "Let Claude read and write your notes vault.",
+      "sub": "Vault MCP gives an assistant 13 tools over a folder of Markdown notes: the backlog, the daily notes, weekly briefs, agent reports and session logs, plus search and a session briefing. Inputs are checked against fixed lists first, and every write is logged in the day's note. It runs over stdio on your PC and has no language model inside.",
+      "command": "python server.py"
+    },
+    "proof_title": "In numbers",
+    "proof": [
+      {
+        "value": "13",
+        "label": "tools in one server",
+        "note": "10 read, 3 write. 44 parameters in all, 1 to 10 per tool.",
+        "source": "assets/measurements.md, section Counts",
+        "short": "tools in one server"
+      },
+      {
+        "value": "3",
+        "label": "tools that can change a file",
+        "note": "They create an idea, update an idea and tick a to-do. The other 10 are marked read-only.",
+        "source": "assets/measurements.md, section Counts",
+        "short": "tools that write"
+      },
+      {
+        "value": "3 of 3",
+        "label": "writes leave a line in the daily note",
+        "note": "Create, update and to-do each added one entry to the day's note in the demo run.",
+        "source": "assets/measurements.md, section Demo run",
+        "short": "writes logged"
+      },
+      {
+        "value": "0",
+        "label": "language model calls inside the server",
+        "note": "Tools read and write files and call the Vault Index search. Search uses a small embedding model through the Vault Index. The assistant that calls the tools is the only language model.",
+        "source": "assets/measurements.md, section Counts"
+      }
+    ],
+    "viewer_lead": "Real calls against an invented vault of 3 notes, made from the tool functions. Each call on the left, the answer on the right, trimmed to the fields that matter.",
+    "viewer": [
+      {
+        "tab": "Read the backlog",
+        "source": "assets/src/list.cmd.txt",
+        "output": "assets/src/list.out.txt",
+        "caption": "The list is a compact summary with paging. A full idea, with description, to-dos and notes, comes from a separate call."
+      },
+      {
+        "tab": "Write and see the log",
+        "source": "assets/src/write.cmd.txt",
+        "output": "assets/src/write.out.txt",
+        "caption": "An update changes only the fields you pass. Each write adds a line to the day's note, so the history of what the assistant changed is one read away."
+      },
+      {
+        "tab": "Bad input is refused",
+        "source": "assets/src/refuse.cmd.txt",
+        "output": "assets/src/refuse.out.txt",
+        "caption": "Status, priority, area and effort are fixed lists. A value outside the list fails before any file is opened."
+      },
+      {
+        "tab": "People notes stay off",
+        "source": "assets/src/people.cmd.txt",
+        "output": "assets/src/people.out.txt",
+        "caption": "The cross-reference call skips notes about people unless you ask. The answer says it skipped them, so silence is not read as no mention."
+      }
+    ],
+    "how": {
+      "title": "A thin layer over files you already have.",
+      "text": "The notes stay the source of truth. The server holds no database and no copy of them.",
+      "steps": [
+        {
+          "title": "Start",
+          "text": "An MCP client launches the server as a subprocess and talks to it over stdio. There is no network port. One environment variable points it at the vault."
+        },
+        {
+          "title": "Validate",
+          "text": "Each tool takes a typed input. Unknown fields, bad dates and values outside the fixed lists are rejected before any file is touched."
+        },
+        {
+          "title": "Read and write",
+          "text": "Ideas are Markdown files with a frontmatter block. A write rewrites only the fields it was given and keeps the rest of the file as it was."
+        },
+        {
+          "title": "Log",
+          "text": "Every write appends one line to the backlog section of the day's note. Search and the briefing hand off to the Vault Index, in process when its libraries are installed and through a subprocess when they are not."
+        }
+      ]
+    },
+    "tables": [
+      {
+        "title": "What it exposes",
+        "lead": "13 tools. Only the ones marked write change a file.",
+        "head": [
+          "Tool",
+          "What it does",
+          "Access"
+        ],
+        "code_first": true,
+        "rows": [
+          [
+            "vault_list_backlog_items",
+            "Lists ideas, filtered by status, area or priority, with paging.",
+            "Read"
+          ],
+          [
+            "vault_get_backlog_item",
+            "Returns one idea in full: fields, description, to-dos, notes.",
+            "Read"
+          ],
+          [
+            "vault_create_backlog_item",
+            "Creates the next idea file and logs it in the day's note.",
+            "Write"
+          ],
+          [
+            "vault_update_backlog_item",
+            "Changes status, priority, impact, effort or due date, or appends a note. Logs it.",
+            "Write"
+          ],
+          [
+            "vault_toggle_todo",
+            "Ticks or reopens one to-do, matched by a substring. Several matches return an error that lists them.",
+            "Write"
+          ],
+          [
+            "vault_get_daily_log",
+            "Returns the day's note, which carries the backlog activity log.",
+            "Read"
+          ],
+          [
+            "vault_get_weekly_brief",
+            "Returns the weekly brief, the latest one by default.",
+            "Read"
+          ],
+          [
+            "vault_get_agent_report",
+            "Returns the report a scheduled job wrote for one day.",
+            "Read"
+          ],
+          [
+            "vault_get_session_log",
+            "Returns the session log for one day.",
+            "Read"
+          ],
+          [
+            "vault_get_context_for_idea",
+            "Collects every mention of one idea across daily, report and session files.",
+            "Read"
+          ],
+          [
+            "vault_list_one_on_ones",
+            "Returns the one-to-one notes of one person. The only tool built for people notes.",
+            "Read, sensitive"
+          ],
+          [
+            "vault_search",
+            "Hybrid search of the vault through the Vault Index, with filters. People notes are out unless asked.",
+            "Read"
+          ],
+          [
+            "vault_briefing",
+            "Opens a session from what is already written: last session, open items, recent decisions.",
+            "Read"
+          ]
+        ]
+      }
+    ],
+    "limits": [
+      {
+        "title": "One person, one machine",
+        "text": "The server runs over stdio for a single user and has no sign-in. Whoever can start it can read what its tools can read."
+      },
+      {
+        "title": "The vault layout is fixed",
+        "text": "Folder names, note formats and the lists of statuses and areas are written in the code. Another vault needs code changes first."
+      },
+      {
+        "title": "Writes have no undo",
+        "text": "Create takes the next free id and update appends its note each time it runs. Rolling back relies on the vault's own history."
+      },
+      {
+        "title": "Context misses current daily notes",
+        "text": "vault_get_context_for_idea reads the old diary folder for daily entries. In the demo it found nothing for an idea the day's note had just logged."
+      },
+      {
+        "title": "People notes come back whole",
+        "text": "vault_list_one_on_ones returns every matching note in full and does not page, so one call can be large."
+      },
+      {
+        "title": "No automated tests yet",
+        "text": "The repo has no test suite. The tools were exercised by hand over stdio. Treat a first run on a real vault with care."
+      },
+      {
+        "title": "Status names are in Portuguese",
+        "text": "Backlog statuses and the log tags the server writes are in Portuguese."
+      }
+    ],
+    "method": "Counts come from importing the server module and listing its registered tools on 2026-10-20. The demo calls ran in process against an invented vault of 3 notes in a scratch folder; nothing was read from or written to a real vault. Search and briefing figures belong to the Vault Index page and were not repeated here.",
+    "cover": {
+      "kind": "terminal",
+      "file": "assets/cover.txt",
+      "title": "vault mcp"
+    },
+    "install": {
+      "lead": "A local MCP server. It needs Python 3.10 or later and a virtual environment of its own.",
+      "steps": [
+        {
+          "title": "Make a dedicated environment and install",
+          "text": "The server needs mcp below version 2: version 2 renamed FastMCP, and the import breaks. A separate environment also keeps other tools' dependency conflicts out.",
+          "code": "python -m venv .venv\n.venv\\Scripts\\python.exe -m pip install -r requirements.txt"
+        },
+        {
+          "title": "Point it at your vault",
+          "text": "If the vault is not in the default path, set the environment variable VAULT_ROOT to its root folder. It goes in the env block of the registration below. The search and briefing tools also need the Vault Index code on the same PC."
+        },
+        {
+          "title": "Try it before you rely on it",
+          "text": "The MCP inspector opens a local page where you can call each tool by hand.",
+          "code": "python -m py_compile server.py vault_io.py\nnpx @modelcontextprotocol/inspector python server.py"
+        },
+        {
+          "title": "Register it in your MCP client",
+          "text": "Add the server to the client's JSON config with the environment's python.exe as the command, server.py as the argument and VAULT_ROOT in env. Close the client before you edit its config, then restart it."
+        }
+      ],
+      "note": "Without onnxruntime, tokenizers and numpy in the environment, search falls back to a slower subprocess and says so in the bridge field.",
+      "source": "README of the vault-mcp repository, sections on install, testing and registering"
+    },
+    "lifecycle": {
+      "state": "in use",
+      "source": "Registry, read from the tool's own version file",
+      "version": "1.0.0",
+      "date": "2026-10-23"
+    },
+    "roadmap": [],
+    "backlog": [
+      {
+        "title": "Multi-call search, measured against the one-shot search",
+        "state": "Backlog"
+      }
+    ],
+    "backlog_source": "Owner backlog, 2026-10-21"
+  }
+]

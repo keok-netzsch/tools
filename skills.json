@@ -1,0 +1,306 @@
+[
+  {
+    "slug": "toilet-paper-skill",
+    "title": "Toilet Paper skill",
+    "job": "Documents",
+    "icon": "tp",
+    "summary": "Drives the Toilet Paper compiler: the agent writes a short source file, renders the diagram or document and checks that nothing published is older than its source.",
+    "use_when": "You need a BPMN diagram, a flowchart, a RACI matrix, an icon picture or a Word document from a source file.",
+    "see": "toilet-paper",
+    "command": "/toilet-paper",
+    "status": "beta",
+    "version": "2.16.0",
+    "date": "2026-10-24",
+    "basis": "Installs with the Toilet Paper tool and follows its version.",
+    "ships": [
+      "SKILL.md"
+    ]
+  },
+  {
+    "slug": "deck-builder",
+    "title": "Deck and document builder",
+    "job": "Documents",
+    "icon": "file-text",
+    "summary": "Plans a deck, a presentation or a branded document with you, then writes the source that Toilet Paper compiles. A deck source becomes an editable .pptx on the company master and one HTML file with the same look; a Markdown source becomes a Word document. It also starts an app page. It asks the format, the brand and the classification first, and writes nothing before you approve the plan.",
+    "use_when": "You need a presentation, a report, a memo or an internal tool page that must look like the company.",
+    "command": "/techcolab-deck",
+    "status": "beta",
+    "version": "b1c891d",
+    "date": "2026-10-24",
+    "basis": "Published to the team folder for a controlled test.",
+    "ships": [
+      "SKILL.md",
+      "README",
+      "references"
+    ],
+    "see": "toilet-paper"
+  },
+  {
+    "slug": "craft-apps",
+    "title": "Craft apps",
+    "job": "Documents",
+    "icon": "layout-grid",
+    "summary": "Installs, updates and runs a set of local Office and design apps by command line and MCP, with no admin rights: decks, documents, sheets, PDF, images, vectors, video and audio.",
+    "use_when": "You want to render, convert, inspect or edit a .pptx, .docx, .xlsx, .pdf, image, video or audio file by script, or check a deck or document visually before you hand it over.",
+    "command": "/craft-apps",
+    "status": "beta",
+    "version": "ad349e6",
+    "date": "2026-10-11",
+    "basis": "Published to the team folder for a controlled test.",
+    "ships": [
+      "SKILL.md",
+      "README",
+      "changelog",
+      "scripts"
+    ]
+  },
+  {
+    "slug": "report-builder",
+    "title": "Report builder",
+    "job": "Build",
+    "icon": "chart-column",
+    "summary": "The delivery line for a Power BI report. The idea is a mockup first: the mockup writes the specification and the contract, and a set of gates checks the delivery. What runs today is the audit of the semantic model against a curation checklist (an automated pass, an assisted review, a score per category), and a record of the steps, gates and cost of a delivery.",
+    "use_when": "You want to deliver a Power BI report, or to check a semantic model before it goes into one.",
+    "command": "/report-builder",
+    "status": "beta",
+    "version": "84380b6",
+    "date": "2026-10-20",
+    "basis": "Published to the team folder for a controlled test. The audit is in beta.",
+    "ships": [
+      "SKILL.md",
+      "scripts (audit, report writer, step record, session cost)",
+      "references"
+    ],
+    "wip": [
+      "The mockup first, the specification and contract it writes, and the delivery gates are in design.",
+      "The mode that scaffolds a new report from a specification is in development."
+    ]
+  },
+  {
+    "slug": "design-review",
+    "title": "Design review",
+    "job": "Review",
+    "icon": "scan-eye",
+    "summary": "Reviews an HTML page against a design system while the page runs in a browser, at 3 screen widths, with WCAG 2.1 AA accessibility checks and a measurement of the brand tokens.",
+    "use_when": "You generate a dashboard, catalog, one-pager or web deck and want to know whether it follows the brand before you deliver it.",
+    "command": "/da-design-review",
+    "status": "local",
+    "ships": [
+      "SKILL.md",
+      "scripts"
+    ]
+  },
+  {
+    "slug": "qa",
+    "title": "QA reviewer",
+    "job": "Review",
+    "icon": "shield-check",
+    "summary": "An adversarial reviewer for a diff, a file or a decision. It runs the tests that exist, then breaks every new or changed test on purpose, line by line. A test that still passes is reported as a problem. That mutation step caught an empty test on the first free-model task.",
+    "use_when": "You want a second look at a change, and a check that its new tests can fail.",
+    "command": "/qa",
+    "status": "local",
+    "ships": [
+      "one command file"
+    ]
+  },
+  {
+    "slug": "pm-copiloto",
+    "title": "Project coach",
+    "job": "Planning",
+    "icon": "compass",
+    "summary": "A pocket guide for running projects, anchored in a five-phase project process and the principles of PMBOK 7, pragmatic and not bureaucratic. It prepares a person for the conversation with a human mentor and does not replace it.",
+    "use_when": "You ask how to start a project, what document you need, how to run a kick-off, a status report, a RACI or a closure, or how to handle risk, change, scope and stakeholders.",
+    "command": "/pm-copiloto",
+    "status": "beta",
+    "version": "f19be46",
+    "date": "2026-10-23",
+    "basis": "Published to the team folder for a controlled test.",
+    "ships": [
+      "SKILL.md",
+      "README",
+      "scripts",
+      "references",
+      "assets",
+      "templates"
+    ]
+  },
+  {
+    "slug": "okr-cycle",
+    "title": "OKR cycle",
+    "job": "Planning",
+    "icon": "target",
+    "summary": "Runs a whole OKR cycle for a team: drafts and pressure-tests the OKRs, groups them into pillars, assigns owners, balances workload, defines a 75, 100 and 125 achievement-scoring model with weights, and generates executive one-pagers (bilingual HTML to PDF) and an Excel scorecard from a single spec file.",
+    "use_when": "You plan or review OKRs, want to score achievement from 50 to 150 percent, or split objectives across people.",
+    "command": "/okr-cycle",
+    "status": "local",
+    "ships": [
+      "SKILL.md",
+      "scripts",
+      "references",
+      "assets"
+    ]
+  },
+  {
+    "slug": "ship",
+    "title": "Shipper",
+    "job": "Build",
+    "icon": "rocket",
+    "summary": "Documentation, commit and push for the last mile. It fixes the docs the change made false, commits only its own paths in a clone that several sessions share, writes a conventional commit and closes the backlog idea with a script. It never stages everything.",
+    "use_when": "A change is done and you want the docs, the commit and the backlog closed in one pass.",
+    "command": "/ship",
+    "status": "local",
+    "ships": [
+      "one command file"
+    ]
+  },
+  {
+    "slug": "fabric-app",
+    "title": "Fabric app method",
+    "job": "Build",
+    "icon": "layers",
+    "summary": "A method to create, develop and publish an app on Microsoft Fabric Apps with its CLI, in TypeScript: prepare the machine once, create the project with the team's rules, develop with Claude or Copilot, connect it to the data, review and publish.",
+    "use_when": "You start a pilot app on Fabric, connect an app to a semantic model or publish one.",
+    "command": "/fabric-app",
+    "status": "local",
+    "ships": [
+      "SKILL.md",
+      "guide",
+      "README",
+      "scripts",
+      "project template"
+    ]
+  },
+  {
+    "slug": "handoff",
+    "title": "Session handoff",
+    "job": "Knowledge",
+    "icon": "notebook-text",
+    "summary": "An end-of-session handoff. It summarizes the session into the notes vault, updates the index and log and leaves a context block, so any later Claude instance can resume without the conversation history.",
+    "use_when": "You close a long session and want the next one to start where this one stopped.",
+    "command": "/obsidian-handoff",
+    "status": "local",
+    "ships": [
+      "one command file"
+    ]
+  },
+  {
+    "slug": "vault-start",
+    "title": "Vault start",
+    "job": "Knowledge",
+    "icon": "library",
+    "summary": "Starts a session on a notes vault: loads the operating manual, restores the last session's context, checks the inbox and asks for the day's focus.",
+    "use_when": "You open a new session and want it to know where things stand.",
+    "command": "/vault-start",
+    "status": "local",
+    "ships": [
+      "one command file"
+    ]
+  },
+  {
+    "slug": "youtube",
+    "title": "Video to vault",
+    "job": "Knowledge",
+    "icon": "video",
+    "summary": "Brings a video from YouTube, TikTok, Instagram or Vimeo into the notes vault, with the provenance written by code and the analysis proposed in the session.",
+    "use_when": "You want a video saved as a sourced note.",
+    "see": "vault-sources",
+    "command": "/youtube",
+    "status": "local",
+    "ships": [
+      "one command file"
+    ]
+  },
+  {
+    "slug": "autodev",
+    "title": "Autodev runner",
+    "job": "Build",
+    "icon": "bot",
+    "summary": "Runs a small task on a free model inside an isolated worktree under strict limits, then checks the result by code. Claude plans and reviews with a mutation check, and a team lead step caps the work. It never pushes.",
+    "use_when": "You have a small task whose test proves it, and you want a free model to make the edit under limits.",
+    "see": "autodev",
+    "command": "node dev/autodev/run.mjs T-NNN",
+    "status": "local",
+    "ships": [
+      "runner",
+      "gates",
+      "team lead",
+      "land script"
+    ],
+    "runner": true
+  },
+  {
+    "slug": "cdmp",
+    "title": "CDMP exam coach",
+    "job": "Learning",
+    "icon": "target",
+    "summary": "An adaptive exam coach for the CDMP data management certification. It makes fresh practice questions one at a time, explains all five options the way an exam forum would, and tracks performance per domain and per concept, with diagnostic reports.",
+    "use_when": "You study for the CDMP exam and want practice questions or a diagnosis of your weak points.",
+    "command": "/cdmp",
+    "status": "beta",
+    "version": "526734d",
+    "date": "2026-09-21",
+    "ships": [
+      "SKILL.md",
+      "references"
+    ]
+  },
+  {
+    "slug": "pesquisa-web",
+    "title": "Web research",
+    "job": "Knowledge",
+    "icon": "search",
+    "summary": "Web research with the source and the date, using the session's own search, with no API key and no extra cost. It answers in the chat and writes no file. A colleague's name or an internal fact never goes into the search.",
+    "use_when": "You ask it to research, compare tools, or check a limit, a version, a price or a feature of a product.",
+    "command": "/pesquisa-web",
+    "status": "beta",
+    "version": null,
+    "date": null,
+    "ships": [
+      "SKILL.md"
+    ]
+  },
+  {
+    "slug": "produto-copiloto",
+    "title": "Product coach",
+    "job": "Planning",
+    "icon": "compass",
+    "summary": "A pocket guide for defining what to build, the counterpart of the project coach. It writes a feature spec from a problem, updates a Now, Next, Later roadmap, turns research and feedback into themes and opportunities, and runs brainstorming that diverges and then converges.",
+    "use_when": "You need a feature spec, a roadmap reprioritised, user feedback synthesised or ideas to solve a problem.",
+    "command": "/produto-copiloto",
+    "status": "local",
+    "ships": [
+      "SKILL.md",
+      "README",
+      "references",
+      "templates"
+    ]
+  },
+  {
+    "slug": "spm-bot",
+    "title": "Portfolio project copilot",
+    "job": "Planning",
+    "icon": "list-checks",
+    "summary": "A copilot for project managers who work in a project portfolio tool. Its commands cover the charter, the work breakdown, the sprint and the status report, and it needs write access to a notes vault.",
+    "use_when": "You manage a project in a portfolio tool and want a charter, a work breakdown, a sprint plan or a status report drafted.",
+    "command": "/charter, /wbs, /sprint, /status",
+    "status": "local",
+    "ships": [
+      "SKILL.md",
+      "assets",
+      "references"
+    ]
+  },
+  {
+    "slug": "capy-test-personas",
+    "title": "App test personas",
+    "job": "Review",
+    "icon": "scan-eye",
+    "summary": "Runs a round of tests on a desktop app with 4 test personas, 2 who know the app and 2 beginners. Each persona uses the real app in the built-in browser and writes test cases that the app's own test mode shows.",
+    "use_when": "You want to test Capy with personas or feed its test mode.",
+    "command": "/capy-test-personas",
+    "status": "local",
+    "ships": [
+      "SKILL.md"
+    ]
+  }
+]
