@@ -19,7 +19,7 @@ header nav{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
 header nav a{color:var(--ink);text-decoration:none;padding:6px 12px;border-radius:6px}
 header nav a:hover{background:var(--accent-soft);color:var(--accent)}
 main{max-width:1240px;margin:0 auto;padding:24px 16px 48px}
-h1{font-size:24px;font-weight:600;margin:8px 0 4px;color:var(--slate)}
+h1{font-size:24px;font-weight:600;margin:8px 0 4px;color:var(--slate);background:linear-gradient(135deg,var(--c-accent-text),var(--c-blue-light));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 h2{font-size:19px;font-weight:600;margin:40px 0 4px;color:var(--slate);scroll-margin-top:96px}
 h3{font-size:16px;font-weight:600;margin:0;color:var(--slate)}
 p.lead{margin:0 0 16px;color:var(--ink2);max-width:80ch}
@@ -144,7 +144,7 @@ a.tool:hover .buy{filter:brightness(1.08)}
 .carousel .slide-text .metrics b{display:inline;font-size:12.5px;font-weight:600;color:#fff;white-space:nowrap;overflow:visible}
 .carousel .slide-text .metrics span{display:inline;margin:0;font-size:12px;color:rgba(255,255,255,.8)}
 .car-ctl{position:absolute;z-index:3;left:50%;transform:translateX(-50%);bottom:26px;display:flex;align-items:center;gap:10px;padding:5px 10px;border-radius:20px;background:rgba(255,255,255,.92);box-shadow:0 4px 14px rgba(38,50,64,.18)}
-.dots{display:flex;gap:6px;align-items:center}
+.dots{display:flex;gap:14px;align-items:center}
 .dot{position:relative;width:10px;height:10px;padding:0;border:0;border-radius:5px;background:#C5CBCF;cursor:pointer;overflow:hidden;transition:width .3s}
 .dot i{position:absolute;left:0;top:0;bottom:0;width:0;background:#007167}
 .dot[aria-current=true]{width:36px}
@@ -330,7 +330,7 @@ p.lead{line-height:1.55}
 .carousel .slide-text .metrics span{color:rgba(255,255,255,.92)}
 .dot{overflow:visible}
 .dot i{border-radius:5px}
-.dot::after{content:"";position:absolute;inset:-9px -3px}
+.dot::after{content:"";position:absolute;inset:-7px -7px}
 .arrow{min-width:32px;height:32px;border-radius:6px}
 .imp summary{padding:4px 0;min-height:24px}
 .tool.skill .go{display:flex;align-items:center;min-height:24px}

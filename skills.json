@@ -9,8 +9,8 @@
     "see": "toilet-paper",
     "command": "/toilet-paper",
     "status": "beta",
-    "version": "2.16.0",
-    "date": "2026-10-24",
+    "version": "2.18.3",
+    "date": "2026-10-29",
     "basis": "Installs with the Toilet Paper tool and follows its version.",
     "ships": [
       "SKILL.md"
@@ -25,8 +25,8 @@
     "use_when": "You need a presentation, a report, a memo or an internal tool page that must look like the company.",
     "command": "/techcolab-deck",
     "status": "beta",
-    "version": "b1c891d",
-    "date": "2026-10-24",
+    "version": "f7a7877",
+    "date": "2026-11-04",
     "basis": "Published to the team folder for a controlled test.",
     "ships": [
       "SKILL.md",
@@ -44,8 +44,8 @@
     "use_when": "You want to render, convert, inspect or edit a .pptx, .docx, .xlsx, .pdf, image, video or audio file by script, or check a deck or document visually before you hand it over.",
     "command": "/craft-apps",
     "status": "beta",
-    "version": "ad349e6",
-    "date": "2026-10-11",
+    "version": "f7a7877",
+    "date": "2026-11-04",
     "basis": "Published to the team folder for a controlled test.",
     "ships": [
       "SKILL.md",
@@ -63,8 +63,8 @@
     "use_when": "You want to deliver a Power BI report, or to check a semantic model before it goes into one.",
     "command": "/report-builder",
     "status": "beta",
-    "version": "84380b6",
-    "date": "2026-10-20",
+    "version": "f7a7877",
+    "date": "2026-11-04",
     "basis": "Published to the team folder for a controlled test. The audit is in beta.",
     "ships": [
       "SKILL.md",
@@ -112,8 +112,8 @@
     "use_when": "You ask how to start a project, what document you need, how to run a kick-off, a status report, a RACI or a closure, or how to handle risk, change, scope and stakeholders.",
     "command": "/pm-copiloto",
     "status": "beta",
-    "version": "f19be46",
-    "date": "2026-10-23",
+    "version": "f7a7877",
+    "date": "2026-11-04",
     "basis": "Published to the team folder for a controlled test.",
     "ships": [
       "SKILL.md",
@@ -158,7 +158,7 @@
     "title": "Fabric app method",
     "job": "Build",
     "icon": "layers",
-    "summary": "A method to create, develop and publish an app on Microsoft Fabric Apps with its CLI, in TypeScript: prepare the machine once, create the project with the team's rules, develop with Claude or Copilot, connect it to the data, review and publish.",
+    "summary": "A method to create, develop and publish an app on Microsoft Fabric Apps with its CLI, in TypeScript: prepare the machine once, create the project with the team's rules, develop with an AI assistant, connect it to the data, review and publish.",
     "use_when": "You start a pilot app on Fabric, connect an app to a semantic model or publish one.",
     "command": "/fabric-app",
     "status": "local",
@@ -175,7 +175,7 @@
     "title": "Session handoff",
     "job": "Knowledge",
     "icon": "notebook-text",
-    "summary": "An end-of-session handoff. It summarizes the session into the notes vault, updates the index and log and leaves a context block, so any later Claude instance can resume without the conversation history.",
+    "summary": "An end-of-session handoff. It summarizes the session into the notes vault, updates the index and log and leaves a context block, so any later assistant session can resume without the conversation history.",
     "use_when": "You close a long session and want the next one to start where this one stopped.",
     "command": "/obsidian-handoff",
     "status": "local",
@@ -215,7 +215,7 @@
     "title": "Autodev runner",
     "job": "Build",
     "icon": "bot",
-    "summary": "Runs a small task on a free model inside an isolated worktree under strict limits, then checks the result by code. Claude plans and reviews with a mutation check, and a team lead step caps the work. It never pushes.",
+    "summary": "Runs a small task on a free model inside an isolated worktree under strict limits, then checks the result by code. A stronger model plans and reviews with a mutation check, and a team lead step caps the work. It never pushes.",
     "use_when": "You have a small task whose test proves it, and you want a free model to make the edit under limits.",
     "see": "autodev",
     "command": "node dev/autodev/run.mjs T-NNN",
@@ -237,8 +237,8 @@
     "use_when": "You study for the CDMP exam and want practice questions or a diagnosis of your weak points.",
     "command": "/cdmp",
     "status": "beta",
-    "version": "526734d",
-    "date": "2026-09-21",
+    "version": "f7a7877",
+    "date": "2026-11-04",
     "ships": [
       "SKILL.md",
       "references"
@@ -253,8 +253,8 @@
     "use_when": "You ask it to research, compare tools, or check a limit, a version, a price or a feature of a product.",
     "command": "/pesquisa-web",
     "status": "beta",
-    "version": null,
-    "date": null,
+    "version": "f7a7877",
+    "date": "2026-11-04",
     "ships": [
       "SKILL.md"
     ]
@@ -277,10 +277,10 @@
   },
   {
     "slug": "spm-bot",
-    "title": "Portfolio project copilot",
+    "title": "Portfolio project coach",
     "job": "Planning",
     "icon": "list-checks",
-    "summary": "A copilot for project managers who work in a project portfolio tool. Its commands cover the charter, the work breakdown, the sprint and the status report, and it needs write access to a notes vault.",
+    "summary": "A coach for project managers who work in a project portfolio tool. Its commands cover the charter, the work breakdown, the sprint and the status report, and it needs write access to a notes vault.",
     "use_when": "You manage a project in a portfolio tool and want a charter, a work breakdown, a sprint plan or a status report drafted.",
     "command": "/charter, /wbs, /sprint, /status",
     "status": "local",

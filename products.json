@@ -471,7 +471,7 @@
         },
         {
           "title": "Run the installer",
-          "text": "It makes a private Python environment, puts tp on your user PATH, registers the MCP server toilet-paper for Claude Code and copies a short skill. -Check only looks. -Uninstall removes everything.",
+          "text": "It makes a private Python environment, puts tp on your user PATH, registers the MCP server toilet-paper for the AI assistant and copies a short skill. -Check only looks. -Uninstall removes everything.",
           "code": ".\\install.ps1"
         },
         {
@@ -517,8 +517,8 @@
     },
     "lifecycle": {
       "state": "beta",
-      "version": "2.16.0",
-      "date": "2026-10-24",
+      "version": "2.18.3",
+      "date": "2026-10-29",
       "source": "Registry, read from the tool's own version file"
     },
     "roadmap": [
@@ -1079,7 +1079,7 @@
       },
       {
         "title": "Analysis needs a model session",
-        "text": "Fetching, scoring and checking are code. Reading a source and judging it is done by a Claude session you run, so it is not free of model calls."
+        "text": "Fetching, scoring and checking are code. Reading a source and judging it is done by an AI assistant session you run, so it is not free of model calls."
       },
       {
         "title": "The ranking only knows what you wrote",
@@ -1121,19 +1121,22 @@
       "Python"
     ],
     "runs": "Windows desktop, local server",
-    "tagline": "Every AI session in one window, with the cost in view.",
-    "summary": "A desktop app that keeps Claude Code, Codex and Gemini sessions together, keeps API and plan accounts apart, checks every file write and shows what your key spends.",
-    "cover": {
-      "kind": "image",
-      "file": "assets/screens/home.jpg",
-      "title": "Capy - Session Hub"
-    },
+    "tagline": "A personal AI assistant for people who do not write code.",
+    "summary": "A desktop app where you talk to an AI assistant in your own words, and it builds the report, plan or document in a folder you pick. It brings the team's knowledge into each work chat and acts only after you allow it.",
     "hero": {
-      "headline": "All your AI sessions in one window, with the cost in view.",
-      "sub": "Capy keeps your Claude Code, Codex and Gemini sessions together on your PC. It keeps API and plan accounts apart, checks every file write before it happens, shows what your key spends and writes the end-of-session note for you."
+      "headline": "A personal AI assistant, with your team's knowledge in reach.",
+      "sub": "Capy brings a project-aware AI assistant to people who never opened a terminal. You talk to it in a window, it works in the folder you pick, and it asks before it changes anything. One switch brings in what the team already knows, and each session ends with a note the next one starts from."
     },
     "proof_title": "In numbers",
     "proof": [
+      {
+        "value": "1",
+        "label": "switch brings in the team's knowledge",
+        "note": "With the knowledge base on, each work message brings what the team already knows: project codes, decisions, how things are done.",
+        "source": "ABOUT and HELP, section Knowledge and the knowledge base",
+        "short": "switch for team knowledge",
+        "icon": "book-open"
+      },
       {
         "value": "84%",
         "label": "cheaper to draft from a written note",
@@ -1151,31 +1154,11 @@
         "icon": "shield-check"
       },
       {
-        "value": "2",
-        "label": "accounts that never mix",
-        "note": "API runs on your company key, Plan on your own subscription. Capy refuses a Plan message in a work folder or one that mentions work.",
-        "source": "HELP, section Work and Personal",
-        "short": "accounts never mixed",
-        "icon": "users"
-      },
-      {
-        "value": "90",
-        "label": "releases in 8 days",
-        "note": "From 1.0.0 on 2026-10-16 to 1.26.4 on 2026-10-23. Help lists every version and what it changed.",
+        "value": "125",
+        "label": "releases from 2026-10-16 to 2026-11-04",
+        "note": "From 1.0.0 to 1.37.8. Help lists every version and what it changed.",
         "source": "CHANGELOG",
         "icon": "rocket"
-      }
-    ],
-    "screens_title": "On screen",
-    "screens_lead": "Real screens from a fresh copy with no sessions, so nothing on them is anyone's work.",
-    "screens": [
-      {
-        "file": "assets/screens/home.jpg",
-        "caption": "The home screen. Pick the account, the tool and the folder, or start from a template. Read only is on by default."
-      },
-      {
-        "file": "assets/screens/templates.jpg",
-        "caption": "Start with a template: pick the task, fill in a few lines and Capy writes the message. You read it and press Send."
       }
     ],
     "how": {
@@ -1184,11 +1167,11 @@
       "steps": [
         {
           "title": "Start",
-          "text": "Begin from a template or a blank chat. Pick the tool and the folder first. The AI reads the folder and changes nothing until you allow it."
+          "text": "Begin from a team template or a blank chat. Pick the folder first. The assistant reads the folder and changes nothing until you allow it."
         },
         {
           "title": "Work",
-          "text": "Turn on Can change files and every write is checked first. A command, such as the tests, shows with Allow and Don't allow and runs only after you click. Undo this reply puts back what a Claude Code reply changed. Review changes shows each file as a line diff: comment on any change and send all comments in one message, or put one change back."
+          "text": "Turn on Can change files and every write is checked first. A command, such as the tests, shows with Allow and Don't allow and runs only after you click. Undo this reply puts the files back. Review changes shows each file as a line diff: comment on any change and send all comments in one message, or put one change back."
         },
         {
           "title": "Wrap up",
@@ -1211,23 +1194,23 @@
         "code_first": false,
         "rows": [
           [
-            "API messages",
-            "The company AI gateway, with your key. Keys and passwords in a message are removed first."
+            "Work messages",
+            "The company AI service, with your own key. Keys and passwords in a message are removed first."
           ],
           [
-            "Plan messages",
-            "Your own account. They never carry work data."
+            "Your work memory, when on",
+            "Your work notes and last work sessions go with each work chat. Personal notes never do, and one switch leaves the memory out of a conversation."
           ],
           [
             "Team knowledge search, when on",
-            "The first 300 characters of an API message, with your own sign-in."
+            "The first 300 characters of a work message, with your own sign-in."
           ],
           [
             "Data catalog lookup",
-            "Table names and searches. Nothing is changed there."
+            "Table names and searches, with your own sign-in. Nothing is changed there."
           ],
           [
-            "Once an hour",
+            "Once a day",
             "Your name and your Capy version, so the team knows who needs an update. You can turn it off."
           ],
           [
@@ -1239,96 +1222,6 @@
             "Your key (encrypted), attachments and Undo copies (7 days) and your sessions."
           ]
         ]
-      },
-      {
-        "title": "New since 2026-10-21",
-        "lead": "From the changelog, newest first. Several of these are still in validation, as the roadmap below says.",
-        "head": [
-          "Version",
-          "What it added"
-        ],
-        "rows": [
-          [
-            "1.28.0",
-            "A security round: one secret redaction for everything that leaves the PC, a stricter command check, edit mode refuses startup folders, profile folders and writes into .git, and no other site can frame Capy."
-          ],
-          [
-            "1.28.0",
-            "Pay, reviews, promotions and career stay out of the work memory, and a personal note never reaches the team queue."
-          ],
-          [
-            "1.28.0",
-            "The agents Capy installs update themselves every hour, and a scheduled task survives an error and a restart."
-          ],
-          [
-            "1.27.2",
-            "Only the newest model of each family is offered, and a chat that picks none runs on it."
-          ],
-          [
-            "1.27.1",
-            "The template gallery is a grid of short cards with search and a filter by where it runs."
-          ],
-          [
-            "1.27.0",
-            "A memory switch per conversation."
-          ],
-          [
-            "1.26.4",
-            "Capy updates itself in the background."
-          ],
-          [
-            "1.26.2",
-            "A read template can run by itself once a week while Capy is open, with a spending cap per run."
-          ],
-          [
-            "1.26.2",
-            "Save a conversation as your own template. A template that changes files shows its plan first, with an Approve button."
-          ],
-          [
-            "1.26.2",
-            "Six more templates: close a project, a team document, a data dictionary, SQL for a question, a process or governance piece, a look at a spreadsheet."
-          ],
-          [
-            "1.26.2",
-            "A conversation that edits files can work in its own copy of the repository and merge it back."
-          ],
-          [
-            "1.26.2",
-            "Work chats load the team skills, and only the MCP servers that a signed team policy allows."
-          ],
-          [
-            "1.26.2",
-            "A board of sessions by state and project, and a coach that reads each reply for a cold cache, many steps or a high cost."
-          ],
-          [
-            "1.26.1",
-            "The reply log keeps 180 days, the personal-use log and sent feedback 365 days. Older entries go once a day."
-          ],
-          [
-            "1.26.0",
-            "Capy repairs itself when its files fail the start check, by installing the same release again."
-          ],
-          [
-            "1.26.0",
-            "Review changes: comment on any change and send all comments in one message, or put one change back."
-          ],
-          [
-            "1.24.0",
-            "Save and compact works for every tool, with no new chat."
-          ],
-          [
-            "1.23.0",
-            "Gemini is a fourth assistant, on the company key only."
-          ],
-          [
-            "1.22.0",
-            "A health check tries the gateway, the knowledge search, the data catalog and Capy itself, with the time of each. Usage counts stay on the PC."
-          ],
-          [
-            "1.21.0",
-            "Steps per reply go from 6 to 40, with a Continue button. Review changes shows each changed file as a line diff."
-          ]
-        ]
       }
     ],
     "limits": [
@@ -1338,174 +1231,22 @@
       },
       {
         "title": "Work needs a company key",
-        "text": "API sessions run on the company AI key. Plan sessions need your own Claude or ChatGPT subscription or a local model."
+        "text": "Work chats run on the company AI service with a key for each person."
       },
       {
-        "title": "Undo covers Claude Code replies",
-        "text": "Undo this reply restores the files a Claude Code reply changed, from copies kept for 7 days."
+        "title": "Undo keeps 7 days",
+        "text": "Undo this reply restores the files a reply changed, from copies kept for 7 days."
       },
       {
         "title": "Attachments are limited",
-        "text": "Up to 5 files per message, and only documents in Work."
+        "text": "Up to 5 files per message, and only documents in work chats."
       },
       {
         "title": "It sees this computer only",
         "text": "Capy shows the sessions on this PC. Details opens the folder that holds a session's files."
       }
     ],
-    "method": "Every number comes from the product's own change log and help page. The screens are captured from a development copy started with an empty data folder on a spare port, so no session or setting of a real user appears.",
-    "scene": {
-      "steps": [
-        {
-          "x": 0.5,
-          "y": 0.5,
-          "s": 1,
-          "ms": 0,
-          "hold": 1200
-        },
-        {
-          "x": 0.56,
-          "y": 0.15,
-          "s": 1.25,
-          "ms": 1300,
-          "hold": 1400,
-          "ring": [
-            0.29,
-            0.118,
-            0.53,
-            0.058
-          ]
-        },
-        {
-          "x": 0.58,
-          "y": 0.8,
-          "s": 1.25,
-          "ms": 1300,
-          "hold": 2600,
-          "ring": [
-            0.292,
-            0.818,
-            0.69,
-            0.136
-          ],
-          "type": "Write a short status note for my project",
-          "typems": 1800
-        },
-        {
-          "x": 0.15,
-          "y": 0.3,
-          "s": 1.7,
-          "ms": 1300,
-          "hold": 1800,
-          "ring": [
-            0.005,
-            0.07,
-            0.27,
-            0.92
-          ],
-          "clear": true,
-          "swap": 0
-        },
-        {
-          "x": 0.15,
-          "y": 0.3,
-          "s": 1.7,
-          "ms": 500,
-          "hold": 2700,
-          "ring": [
-            0.008,
-            0.15,
-            0.262,
-            0.042
-          ],
-          "swap": 1,
-          "swapAt": 900,
-          "dim": false
-        },
-        {
-          "x": 0.15,
-          "y": 0.3,
-          "s": 1.7,
-          "ms": 300,
-          "hold": 2900,
-          "ring": [
-            0.008,
-            0.186,
-            0.262,
-            0.038
-          ],
-          "swap": 2,
-          "swapAt": 900,
-          "dim": false
-        },
-        {
-          "x": 0.15,
-          "y": 0.3,
-          "s": 1.7,
-          "ms": 300,
-          "hold": 3100,
-          "ring": [
-            0.066,
-            0.066,
-            0.204,
-            0.054
-          ],
-          "type": "plan",
-          "typems": 700,
-          "typeAt": [
-            0.071,
-            0.0745,
-            0.19,
-            0.038,
-            1.2
-          ],
-          "typeBg": "#F1F1F2",
-          "swap": 3,
-          "swapAt": 1400,
-          "dim": false
-        },
-        {
-          "x": 0.5,
-          "y": 0.5,
-          "s": 1,
-          "ms": 1100,
-          "hold": 800,
-          "clear": true,
-          "swap": 0
-        }
-      ],
-      "ar": 1.449,
-      "states": [
-        {
-          "file": "assets/screens/state-b.jpg",
-          "box": [
-            0,
-            0.0628,
-            0.2775,
-            0.937
-          ]
-        },
-        {
-          "file": "assets/screens/state-c.jpg",
-          "box": [
-            0,
-            0.0628,
-            0.2775,
-            0.937
-          ]
-        },
-        {
-          "file": "assets/screens/state-d.jpg",
-          "box": [
-            0,
-            0.0628,
-            0.2775,
-            0.937
-          ]
-        }
-      ],
-      "fit": 1.18
-    },
+    "method": "Every number comes from the product's own change log, help page and about page. Screens are left out until a clean capture exists.",
     "impact": {
       "figure": "84%",
       "label": "cheaper to draft from a written note",
@@ -1514,9 +1255,9 @@
     },
     "lifecycle": {
       "state": "beta",
-      "version": "1.28.0",
-      "date": "2026-10-24",
-      "source": "Registry, read from the tool's own version file"
+      "version": "1.37.8",
+      "date": "2026-11-04",
+      "source": "The tool's own version file and change log"
     },
     "roadmap": [
       {
@@ -1578,649 +1319,8 @@
         "state": "Backlog"
       }
     ],
-    "backlog_source": "Owner backlog, 2026-10-23"
-  },
-  {
-    "slug": "ai-spend-view",
-    "name": "AI Spend View",
-    "kind": "app",
-    "job": "Operations",
-    "status": "landing",
-    "glyph": "ai-spend-view",
-    "stack": [
-      "PowerShell",
-      "HTML"
-    ],
-    "runs": "Local page, daily task",
-    "tagline": "Each person sees their monthly AI spend.",
-    "summary": "Shows each person their monthly spend on an AI gateway, from a daily capture. The numbers stay on your PC and in your profile folder.",
-    "hero": {
-      "headline": "See what your AI key spent this month, without asking anyone.",
-      "sub": "AI Spend View reads your own key on the AI gateway twice a day and keeps the readings on your PC. A local page turns them into the spend since the 1st, a forecast for month end and a warning before you reach the limit you set."
-    },
-    "proof_title": "In numbers",
-    "proof": [
-      {
-        "value": "2",
-        "label": "reads a day, plus one at startup",
-        "note": "A scheduled task reads the gateway at 09:00 and 17:00, and when the PC starts if a time passed while it was off.",
-        "source": "README, section Captura automática",
-        "short": "reads a day"
-      },
-      {
-        "value": "3 days",
-        "label": "is the longest gap for an exact month",
-        "note": "The month figure is exact when a reading exists up to 3 days before the 1st or on the 1st. With the daily capture there is always one. Without it the page shows a range and marks it incomplete.",
-        "source": "README, section O que faz; CHANGELOG, version 1.3",
-        "short": "longest gap, exact month"
-      },
-      {
-        "value": "2",
-        "label": "warnings a month, one at each mark",
-        "note": "A Windows notice at 80% and another at 100% of the limit you entered, once each per month.",
-        "source": "README, section Captura automática",
-        "short": "warnings a month"
-      },
-      {
-        "value": "4",
-        "label": "team-level calls an ordinary key cannot make",
-        "note": "User, team, key-list and spend-log queries return 403 for a normal key. The page therefore shows your own spend and nobody else's.",
-        "source": "README, section O que faz"
-      }
-    ],
-    "how": {
-      "title": "Read twice a day, compute on your PC.",
-      "text": "The gateway reports one running total per key. It does not report the month. The page computes the month from your own readings, and says how sure it is.",
-      "steps": [
-        {
-          "title": "Install once",
-          "text": "Run the installer. It stores your key encrypted for your Windows user, asks for your monthly limit, creates the scheduled task and puts a shortcut on the desktop. No admin rights."
-        },
-        {
-          "title": "Capture",
-          "text": "Each run reads the key total from the gateway and appends it to a history file in your own profile folder. It also refreshes the model price table."
-        },
-        {
-          "title": "Compute",
-          "text": "The spend since the 1st is the sum of the rises between readings. A drop of more than 1 cent counts as a key reset. A smaller drop is rounding noise and counts as zero."
-        },
-        {
-          "title": "Show and warn",
-          "text": "The local page shows the month spend against your limit, a month-end forecast and the price per model. Windows warns you at 80% and 100%, and when the gateway refuses the balance query."
-        }
-      ]
-    },
-    "tables": [
-      {
-        "title": "Two totals, two meanings",
-        "lead": "The page shows both so a key total above your limit does not look like an overrun.",
-        "head": [
-          "",
-          "Total on the key",
-          "Spend this month"
-        ],
-        "code_first": false,
-        "rows": [
-          [
-            "Where it comes from",
-            "The gateway, as is",
-            "Computed from your readings"
-          ],
-          [
-            "Resets on the 1st",
-            "No",
-            "Yes"
-          ],
-          [
-            "Compared with your limit",
-            "No",
-            "Yes"
-          ],
-          [
-            "Exact",
-            "Always",
-            "With a reading up to 3 days before the 1st"
-          ]
-        ]
-      }
-    ],
-    "limits": [
-      {
-        "title": "Windows only",
-        "text": "The capture is a PowerShell task and the warnings are Windows notices."
-      },
-      {
-        "title": "You enter your own limit",
-        "text": "The gateway does not report a monthly cap for a normal key. The page compares your spend with the number you typed at install, and says so when you left it blank."
-      },
-      {
-        "title": "The month can be a range",
-        "text": "With no reading near the 1st, the page shows at least what rose since the first reading of the month and marks it incomplete. It never shows the whole key total as the month."
-      },
-      {
-        "title": "No team view",
-        "text": "A normal key reads only its own total and the model list. Spend for a team needs the people who run the gateway."
-      },
-      {
-        "title": "Opened files do not share a browser",
-        "text": "The page keeps manual readings in the browser. Another browser, or a localhost address, starts with its own empty store. The captured readings appear in all of them."
-      },
-      {
-        "title": "No automated tests",
-        "text": "The tool has a change log and a manual check, but no test suite yet."
-      }
-    ],
-    "method": "Statements come from the tool's own README and change log, and from reading its capture script. The two rules in the viewer were run on made-up numbers in a scratch folder. The capture itself was not run, because it calls the live gateway with a real key. The amounts are invented.",
-    "viewer_lead": "The two rules that decide what the page shows, copied from the capture script with the comments translated, each run on made-up numbers in a scratch folder. The real capture needs a live gateway call with a real key, so it was not run.",
-    "viewer": [
-      {
-        "tab": "Month spend rule",
-        "source": "assets/src/month-rule.cmd.txt",
-        "caption": "The gateway gives a running total. The month figure is the sum of rises between your readings, with a reset detected by a drop of more than 1 cent.",
-        "output": "assets/src/month-rule.out.txt"
-      },
-      {
-        "tab": "Warning rule",
-        "source": "assets/src/warn-rule.cmd.txt",
-        "caption": "One notice per mark per month, against the limit you entered. With no limit entered, no notice fires.",
-        "output": "assets/src/warn-rule.out.txt"
-      }
-    ],
-    "lifecycle": {
-      "state": "in use",
-      "version": "1.5",
-      "date": "2026-10-08",
-      "source": "Changelog"
-    },
-    "roadmap": [],
-    "backlog": [],
-    "cover": {
-      "kind": "terminal",
-      "file": "assets/cover.txt",
-      "title": "spend view"
-    }
-  },
-  {
-    "slug": "autodev",
-    "name": "Autodev",
-    "kind": "agent",
-    "job": "Building",
-    "status": "landing",
-    "glyph": "autodev",
-    "stack": [
-      "Node",
-      "OpenCode"
-    ],
-    "runs": "Local runner",
-    "tagline": "Free models build, Claude plans and reviews.",
-    "summary": "An OpenCode model executes the task, Claude plans and reviews, and the tests are checked by mutation. Code waits for your ok. A team lead step caps how much work the free model gets.",
-    "hero": {
-      "headline": "Let a free model write the change. Check it with code, then with a review.",
-      "sub": "Autodev splits the work. Claude writes a task and reviews the result. A free model, run through OpenCode, makes the edits in an isolated worktree. A script checks scope, size, secrets and every test. Nothing is pushed without your ok. It runs on a personal project, with no company data and no company key.",
-      "command": "node dev/autodev/run.mjs T002"
-    },
-    "proof_title": "In numbers",
-    "proof": [
-      {
-        "value": "30",
-        "label": "checks every task must pass",
-        "note": "The 26 tests and 4 validators that npm test runs, plus the task's own gate. The list is read from the main branch, so the model cannot shorten it.",
-        "source": "assets/measurements.md",
-        "short": "checks per task"
-      },
-      {
-        "value": "0",
-        "label": "bad versions survived the last review",
-        "note": "Mutation review of the one task so far: 3 of 5 broken copies passed the test on attempt 1, 1 of 8 on attempt 2, none on attempt 3.",
-        "source": "docs/autodev.md, section Review that the gates cannot do",
-        "short": "bad versions left"
-      },
-      {
-        "value": "66",
-        "label": "lines in the one landed task",
-        "note": "A code change plus its test, produced by a free model in 156 seconds of executor time on the last attempt.",
-        "source": "assets/measurements.md",
-        "short": "lines in the one task"
-      },
-      {
-        "value": "2",
-        "label": "retries at most",
-        "note": "A bounced task goes back with the reviewer's text. After the third attempt it goes to the owner.",
-        "source": "docs/autodev.md, section Review that the gates cannot do"
-      },
-      {
-        "value": "4",
-        "label": "executor runs a day at most",
-        "note": "The team lead also caps attempts at 3 per task, open tasks at 1 and new tasks at 2 a week, and checks that a task fits before a run is spent.",
-        "source": "docs/autodev.md, section Team lead",
-        "short": "executor runs a day at most"
-      }
-    ],
-    "viewer_lead": "One task file in, one result record out. The task is an example; the result and the review numbers come from the one real run.",
-    "viewer": [
-      {
-        "tab": "Task in, record out",
-        "source": "assets/src/task.cmd.txt",
-        "output": "assets/src/task.out.txt",
-        "caption": "A task names the files the model may edit, the gates it must pass and a size limit. The record keeps the exit code of every gate."
-      },
-      {
-        "tab": "What the checker blocks",
-        "source": "assets/src/scope.cmd.txt",
-        "output": "assets/src/scope.out.txt",
-        "caption": "After the model stops, a script compares the changes with the task. A red result bounces the task and no review is spent."
-      },
-      {
-        "tab": "Mutation review",
-        "source": "assets/src/mutation.cmd.txt",
-        "output": "assets/src/mutation.out.txt",
-        "caption": "The first task passed every machine check and its test still proved nothing. Breaking the code on purpose showed it."
-      }
-    ],
-    "how": {
-      "title": "Claude plans, a free model edits, code checks, Claude reviews.",
-      "text": "Each step has one owner. The model that edits never decides whether its own work is good.",
-      "steps": [
-        {
-          "title": "Plan",
-          "text": "Claude reads the weekly report and the answer log, then writes one file per task. Only the task text goes to the free model, never the logs."
-        },
-        {
-          "title": "Execute",
-          "text": "The runner resets an isolated worktree to main and runs the task with an OpenCode model. The default is a free one, and --model changes it."
-        },
-        {
-          "title": "Check",
-          "text": "No model involved. Only allowed files changed, no forbidden path, the diff is under the limit, no secret in the added lines, and every check exits 0."
-        },
-        {
-          "title": "Review",
-          "text": "Claude reads the diff against the task in a clean session and breaks the changed code on purpose to see that the new test fails."
-        },
-        {
-          "title": "Land",
-          "text": "land commits in the worktree and fast-forwards main. It never pushes. Deploy needs the owner's ok. A task that only adds new test files lands on its own, still without a push."
-        }
-      ]
-    },
-    "tables": [
-      {
-        "title": "What the executor can do",
-        "head": [
-          "",
-          "Allowed"
-        ],
-        "rows": [
-          [
-            "Edit",
-            "Any file except the runner, the task files, the deploy script, the test list, config, secrets, photos and the sync folder."
-          ],
-          [
-            "Read",
-            "Everything except secrets, the sync folder, photos and the content banks. A hosted free model is assumed to log prompts, so that content stays with Claude."
-          ],
-          [
-            "Shell",
-            "Only node dev/test-*, node dev/validate-*, git status and git diff."
-          ],
-          [
-            "Network",
-            "None. The web fetch and execute tools are denied."
-          ]
-        ]
-      },
-      {
-        "title": "What the team lead allows",
-        "lead": "A step of the weekly routine plus a gate in the runner. No model is involved, and the executor cannot edit it.",
-        "head": [
-          "Limit",
-          "Value"
-        ],
-        "rows": [
-          [
-            "Executor runs in 24 hours",
-            "4"
-          ],
-          [
-            "Attempts per task",
-            "3, then it goes to the owner"
-          ],
-          [
-            "Open tasks at once",
-            "1"
-          ],
-          [
-            "New tasks per week",
-            "2"
-          ],
-          [
-            "Paths a task may allow",
-            "2, only app scripts, test files, validators and the shared library"
-          ],
-          [
-            "Lines changed",
-            "150 at most"
-          ],
-          [
-            "Task text",
-            "450 words at most, with an acceptance command and a named source"
-          ]
-        ]
-      }
-    ],
-    "limits": [
-      {
-        "title": "A personal project only",
-        "text": "The free model is outside the company's approved AI. Autodev runs on a personal study app that holds no company data, and it never sees a company key."
-      },
-      {
-        "title": "One task so far",
-        "text": "The page rests on a single landed task. It is not a success rate, and there is no measured saving against writing the change by hand."
-      },
-      {
-        "title": "The lead's limits rest on one task",
-        "text": "They are a narrow start, not a measured throughput. They widen only after 10 landed tasks, and the first task would not pass them today: it allowed 200 lines."
-      },
-      {
-        "title": "It tests logic, not screens",
-        "text": "A change to the interface needs a browser check by Claude before it lands."
-      },
-      {
-        "title": "A green test can still be empty",
-        "text": "The first task passed every machine check with a test that proved nothing. Claude samples the auto-landed tests in a weekly pass."
-      },
-      {
-        "title": "Setup is slow once",
-        "text": "Creating the isolated worktree took about 7 minutes in the app that uses it, because of its audio files. It happens once."
-      },
-      {
-        "title": "Free model names change",
-        "text": "If a model disappears, pass --model. opencode-cli models lists what is available."
-      },
-      {
-        "title": "It depends on one tool version",
-        "text": "The agent rules were worked out on OpenCode 2.0.30. A wrong form of one setting drops the whole agent file without a clear error."
-      }
-    ],
-    "method": "Counts read on 2026-10-20 from the files of the one app that uses Autodev. The check count comes from the test list parsed by the runner's own helper. The run figures come from the record of the single landed task. Nothing was re-run against a model. The mutation figures come from the project's own notes on that task.",
-    "cover": {
-      "kind": "terminal",
-      "file": "assets/cover.txt",
-      "title": "autodev"
-    },
-    "headline": [
-      {
-        "value": "1",
-        "short": "task landed so far",
-        "label": "task landed so far",
-        "note": "A change to the review order of a practice round in the app it serves, with a test that comes with it.",
-        "source": "tasks/runs, assets/measurements.md",
-        "icon": "rocket"
-      },
-      {
-        "value": "3",
-        "short": "attempts before review accepted it",
-        "label": "attempts before review accepted it",
-        "note": "The first attempt had 3 of 5 broken copies passing its test, the second 1 of 8, the third none.",
-        "source": "docs/autodev.md, section Review that the gates cannot do",
-        "icon": "list-checks"
-      },
-      {
-        "value": "66 lines",
-        "short": "in the landed change, 156 s",
-        "label": "in the landed change, 156 s of executor time",
-        "note": "A code change plus its test, produced by a free model.",
-        "source": "assets/measurements.md",
-        "icon": "gauge"
-      }
-    ],
-    "lifecycle": {
-      "state": "in use",
-      "source": "Registry, read from the tool's own version file",
-      "version": "1.0.0",
-      "date": "2026-10-23"
-    },
-    "roadmap": [],
-    "backlog": []
-  },
-  {
-    "slug": "study-quest",
-    "name": "Study Quest",
-    "kind": "app",
-    "job": "Learning",
-    "status": "landing",
-    "tagline": "A language-study game with a save state.",
-    "summary": "Flashcards and battles over a study plan, with a save state. Study answers sync back to your notes vault.",
-    "stack": [
-      "Node",
-      "Vercel functions"
-    ],
-    "runs": "Hosted web app",
-    "glyph": "study-quest",
-    "hero": {
-      "headline": "A language-study game that goes easy on missed days.",
-      "sub": "Study Quest wraps a study plan in a map, flashcards and turn-based battles. Each answer is a move, a wrong one comes back as a rematch, and a missed week never leaves you stuck. Your answers flow to your own notes, and the game never writes there."
-    },
-    "proof_title": "In numbers",
-    "proof": [
-      {
-        "value": "30",
-        "label": "checks behind every deploy",
-        "note": "One command runs all of them, and the deploy script and the CI workflow call the same list. All 30 passed on 2026-10-24.",
-        "source": "assets/measurements.md",
-        "short": "checks per deploy"
-      },
-      {
-        "value": "81",
-        "label": "cases for the answer checker",
-        "note": "The checker decides if a typed answer is right, a small slip or wrong. The same code runs in battles, in practice and in the tests.",
-        "source": "assets/measurements.md",
-        "short": "cases for the checker"
-      },
-      {
-        "value": "30",
-        "label": "HP, the most a missed stretch can cost",
-        "note": "The first missed day costs nothing. After that each day costs 10 HP up to 30, and you can still play at 0 HP.",
-        "source": "docs/motor.md, section 3",
-        "short": "HP, the most a miss costs"
-      },
-      {
-        "value": "96",
-        "label": "verbs, each with its own review box",
-        "note": "A correct answer moves a verb up a box and a wrong one moves it down. Boxes come back after 1, 3, 7, 14 and 30 days.",
-        "source": "README, section v57; docs/motor.md, section 16"
-      }
-    ],
-    "viewer_lead": "Real runs of the project's own checks. They use an in-memory fake database, so nothing real is read or written.",
-    "viewer": [
-      {
-        "tab": "The full check list",
-        "source": "assets/src/suite.cmd.txt",
-        "output": "assets/src/suite.out.txt",
-        "caption": "One command runs every check and prints the failures. A new test counts only once it is in that list."
-      },
-      {
-        "tab": "Monsters grow with you",
-        "source": "assets/src/foe.cmd.txt",
-        "output": "assets/src/foe.out.txt",
-        "caption": "The first fight with a guardian is at the lesson level. After you win, the rematch follows your level, with more HP and a stronger attack."
-      },
-      {
-        "tab": "Real data stays out",
-        "source": "assets/src/guard.cmd.txt",
-        "output": "assets/src/guard.out.txt",
-        "caption": "The server refuses a database whose label does not match the deployment. Tests and the dev server use a fake one."
-      }
-    ],
-    "how": {
-      "title": "Learn, fight, review.",
-      "text": "The game state lives in the app. What you study flows one way, to your notes.",
-      "steps": [
-        {
-          "title": "Learn",
-          "text": "Every guardian on the map has a lesson first: a rule, examples with audio, the common mistake and a short check without HP loss. Fighting before the lesson asks you first."
-        },
-        {
-          "title": "Fight",
-          "text": "Each question is a move: listen, grammar, read or speak. A move has 4 uses. A monster is weak to one type and resists another. A wrong answer returns as a rematch after 2 other questions."
-        },
-        {
-          "title": "Review",
-          "text": "Lines from lessons, nouns and verbs sit in review boxes with growing gaps. A weekly report counts answers by skill from the same log, with no model in between."
-        },
-        {
-          "title": "Sync",
-          "text": "A script on your PC pulls answers and minutes from the app into your own tracker. The app never writes to your notes, and your notes never receive anything that did not pass through that script."
-        }
-      ]
-    },
-    "tables": [
-      {
-        "title": "How strict the checker is",
-        "lead": "A typo against a weak monster weakens the hit and costs no HP. Stronger monsters tolerate fewer slips.",
-        "head": [
-          "Monster level",
-          "Strictness",
-          "Letters forgiven",
-          "Hit after a slip",
-          "Missing umlaut"
-        ],
-        "code_first": false,
-        "rows": [
-          [
-            "1 to 5",
-            "Light",
-            "1 up to 4 letters, 2 up to 10, else 3",
-            "75%",
-            "A slip"
-          ],
-          [
-            "6 to 10",
-            "Medium",
-            "1 for a word, 2 for a phrase, 3 for a long phrase",
-            "50%",
-            "A slip"
-          ],
-          [
-            "11 to 15",
-            "High",
-            "Same as medium",
-            "25%",
-            "An error"
-          ],
-          [
-            "16 and above, boss",
-            "Full",
-            "1, only in a phrase over 24 letters; a noun's capital letter counts",
-            "25%",
-            "An error"
-          ]
-        ]
-      },
-      {
-        "title": "Rules that keep it playable",
-        "head": [
-          "Situation",
-          "What happens"
-        ],
-        "rows": [
-          [
-            "HP reaches 0",
-            "You faint, wake up with 50% HP and lose 10% of your coins. XP, items, streak and map stay."
-          ],
-          [
-            "HP over time",
-            "It grows 10 per hour, even with the app closed."
-          ],
-          [
-            "Back after 3 or more days",
-            "The daily mission pays double XP and comes with a healing potion."
-          ],
-          [
-            "Fleeing a battle",
-            "Costs 5 coins and no HP."
-          ],
-          [
-            "Places",
-            "Never locked. The map shows the monster level and the level it recommends."
-          ],
-          [
-            "Wrong options",
-            "Three choices always. A test fails if the right answer is the longest too often."
-          ]
-        ]
-      },
-      {
-        "title": "New since 2026-10-23",
-        "lead": "From the project's release notes, newest first.",
-        "head": [
-          "Version",
-          "What it added"
-        ],
-        "rows": [
-          [
-            "v63",
-            "A clean edition: one command builds the engine with one content pack, with no personal names, no photos and no work documents, and checks itself."
-          ],
-          [
-            "v62",
-            "A content pack can bring its own title, greeting, class, ranks, move and monster names, and hide what only one language needs."
-          ],
-          [
-            "v61",
-            "The engine asks the pack which language it teaches; a second pack, a small Mandarin demo with its own answer rules, runs on the same engine."
-          ],
-          [
-            "v60",
-            "The content is written as YAML files, one lesson, place or character per file, and the code modules are generated from them."
-          ],
-          [
-            "v59",
-            "The content tree written as YAML and read back byte for byte, with a schema for the slide types."
-          ]
-        ]
-      }
-    ],
-    "limits": [
-      {
-        "title": "Built for one player",
-        "text": "There is one account with one save per subject. The app is a personal build, not a product packaged for other people."
-      },
-      {
-        "title": "You host it",
-        "text": "It needs a Vercel project and an Upstash Redis database. Sign-in is a passphrase of 12 characters or more, or a Google account on an allowed list."
-      },
-      {
-        "title": "The state lives in one database",
-        "text": "Level, coins, items and the review schedule exist only there. The sync script keeps dated backups on your PC, and a restore needs a flag to run."
-      },
-      {
-        "title": "Some check-ins are self-declared",
-        "text": "Minutes studied in another language app come from a tap, because that app has no official API."
-      },
-      {
-        "title": "Rank is not a grade",
-        "text": "Level measures effort. Rank rises only on real milestones read from your tracker, and the mock exam inside the game does not replace a real one."
-      },
-      {
-        "title": "Project notes are in Portuguese",
-        "text": "The README and the rules file are written in Portuguese. The interface comes in English, Portuguese and German, and English is the default."
-      }
-    ],
-    "method": "Counts come from the project's own README, rules file and tests, and from running the test suite once on 2026-10-21 against the in-memory fake database. The check list and demo outputs are real runs, trimmed to the lines shown. No screenshots are shown because the game screens carry personal content.",
-    "cover": {
-      "kind": "terminal",
-      "file": "assets/cover.txt",
-      "title": "study quest"
-    },
-    "lifecycle": {
-      "state": "in use",
-      "version": "v63",
-      "date": "2026-10-24",
-      "source": "Registry, read from the tool's own version file"
-    },
-    "roadmap": [],
-    "backlog": []
+    "backlog_source": "Owner backlog, 2026-10-23",
+    "screens_pending": "The earlier screens showed the names of the AI tools behind it. New ones come from a clean capture."
   },
   {
     "slug": "knowledge-qa",
@@ -2652,10 +1752,10 @@
       "Python"
     ],
     "runs": "Local MCP server",
-    "tagline": "Let Claude read and write your notes vault, on your own machine.",
+    "tagline": "Let your AI assistant read and write your notes vault, on your own machine.",
     "summary": "An MCP server for the backlog, daily logs and briefs of a notes vault. 13 tools, no model inside, nothing leaves the PC.",
     "hero": {
-      "headline": "Let Claude read and write your notes vault.",
+      "headline": "Let your AI assistant read and write your notes vault.",
       "sub": "Vault MCP gives an assistant 13 tools over a folder of Markdown notes: the backlog, the daily notes, weekly briefs, agent reports and session logs, plus search and a session briefing. Inputs are checked against fixed lists first, and every write is logged in the day's note. It runs over stdio on your PC and has no language model inside.",
       "command": "python server.py"
     },
