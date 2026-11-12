@@ -3,7 +3,7 @@
     "slug": "toilet-paper",
     "name": "Toilet Paper",
     "kind": "app",
-    "job": "Documents",
+    "job": "Standardization",
     "status": "landing",
     "stack": [
       "Python"
@@ -534,7 +534,7 @@
     "slug": "vault-index",
     "name": "Vault Index",
     "kind": "mcp",
-    "job": "Knowledge",
+    "job": "Knowledge management",
     "status": "landing",
     "glyph": "vault-index",
     "stack": [
@@ -906,7 +906,7 @@
     "slug": "capy",
     "name": "Capy",
     "kind": "app",
-    "job": "Knowledge",
+    "job": "Project delivery",
     "status": "landing",
     "featured": true,
     "rank": 4,
@@ -1120,7 +1120,7 @@
     "slug": "knowledge-qa",
     "name": "Team Knowledge Q&A",
     "kind": "app",
-    "job": "Knowledge",
+    "job": "Knowledge management",
     "status": "landing",
     "glyph": "knowledge-qa",
     "stack": [
@@ -1336,7 +1336,7 @@
     "slug": "team-memory-agent",
     "name": "Team Memory Agent",
     "kind": "agent",
-    "job": "Knowledge",
+    "job": "Knowledge management",
     "status": "landing",
     "glyph": "team-memory-agent",
     "stack": [

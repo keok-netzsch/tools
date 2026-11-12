@@ -2,7 +2,7 @@
   {
     "slug": "deck-builder",
     "title": "Deck and document builder",
-    "job": "Documents",
+    "job": "Standardization",
     "icon": "file-text",
     "summary": "Plans a deck, a presentation or a branded document with you, then writes the source that Toilet Paper compiles. A deck source becomes an editable .pptx on the company master and one HTML file with the same look; a Markdown source becomes a Word document. It also starts an app page. It asks the format, the brand and the classification first, and writes nothing before you approve the plan.",
     "use_when": "You need a presentation, a report, a memo or an internal tool page that must look like the company.",
@@ -21,7 +21,7 @@
   {
     "slug": "report-builder",
     "title": "Report builder",
-    "job": "Build",
+    "job": "Standardization",
     "icon": "chart-column",
     "summary": "The delivery line for a Power BI report. The idea is a mockup first: the mockup writes the specification and the contract, and a set of gates checks the delivery. What runs today is the audit of the semantic model against a curation checklist (an automated pass, an assisted review, a score per category), and a record of the steps, gates and cost of a delivery.",
     "use_when": "You want to deliver a Power BI report, or to check a semantic model before it goes into one.",
@@ -43,7 +43,7 @@
   {
     "slug": "design-review",
     "title": "Design review",
-    "job": "Review",
+    "job": "Standardization",
     "icon": "scan-eye",
     "summary": "Reviews an HTML page against a design system while the page runs in a browser, at 3 screen widths, with WCAG 2.1 AA accessibility checks and a measurement of the brand tokens.",
     "use_when": "You generate a dashboard, catalog, one-pager or web deck and want to know whether it follows the brand before you deliver it.",
@@ -57,7 +57,7 @@
   {
     "slug": "pm-copiloto",
     "title": "Project coach",
-    "job": "Planning",
+    "job": "Project delivery",
     "icon": "compass",
     "summary": "A pocket guide for running projects, anchored in a five-phase project process and the principles of PMBOK 7, pragmatic and not bureaucratic. It prepares a person for the conversation with a human mentor and does not replace it.",
     "use_when": "You ask how to start a project, what document you need, how to run a kick-off, a status report, a RACI or a closure, or how to handle risk, change, scope and stakeholders.",
@@ -78,7 +78,7 @@
   {
     "slug": "okr-cycle",
     "title": "OKR cycle",
-    "job": "Planning",
+    "job": "Project delivery",
     "icon": "target",
     "summary": "Runs a whole OKR cycle for a team: drafts and pressure-tests the OKRs, groups them into pillars, assigns owners, balances workload, defines a 75, 100 and 125 achievement-scoring model with weights, and generates executive one-pagers (bilingual HTML to PDF) and an Excel scorecard from a single spec file.",
     "use_when": "You plan or review OKRs, want to score achievement from 50 to 150 percent, or split objectives across people.",
@@ -94,7 +94,7 @@
   {
     "slug": "fabric-app",
     "title": "Fabric app method",
-    "job": "Build",
+    "job": "Standardization",
     "icon": "layers",
     "summary": "A method to create, develop and publish an app on Microsoft Fabric Apps with its CLI, in TypeScript: prepare the machine once, create the project with the team's rules, develop with an AI assistant, connect it to the data, review and publish.",
     "use_when": "You start a pilot app on Fabric, connect an app to a semantic model or publish one.",
@@ -111,7 +111,7 @@
   {
     "slug": "produto-copiloto",
     "title": "Product coach",
-    "job": "Planning",
+    "job": "Project delivery",
     "icon": "compass",
     "summary": "A pocket guide for defining what to build, the counterpart of the project coach. It writes a feature spec from a problem, updates a Now, Next, Later roadmap, turns research and feedback into themes and opportunities, and runs brainstorming that diverges and then converges.",
     "use_when": "You need a feature spec, a roadmap reprioritised, user feedback synthesised or ideas to solve a problem.",
