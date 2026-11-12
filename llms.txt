@@ -4,7 +4,7 @@ One line per tool. Machine-readable detail: products.json.
 
 - Toilet Paper (App, Standardization): Turns YAML and Markdown into BPMN, flowcharts, RACI matrices, icon pictures, Word documents and decks. No language model inside. toilet-paper/index.html
 - Vault Index (MCP server, Knowledge management): Hybrid search over a folder of Markdown notes, for people and for agents. No language model in the index, and nothing leaves the PC. vault-index/index.html
-- Capy (App, Project delivery): A desktop app where you talk to an AI assistant in your own words, and it builds the report, plan or document in a folder you pick. It brings the team's knowledge into each work chat and acts only after you allow it. capy/index.html
+- Capy (App, Productivity): A desktop app where you talk to an AI assistant in your own words, and it builds the report, plan or document in a folder you pick. It brings the team's knowledge into each work chat and acts only after you allow it. capy/index.html
 - Team Knowledge Q&A (App, Knowledge management): A knowledge layer for a team: pages, search and answers with their source. Every page has an owner, a class and a link to where it came from. knowledge-qa/index.html
 - Team Memory Agent (Agent, Knowledge management): Captures every hour and consolidates by code. A week becomes record only after you approve it. team-memory-agent/index.html
 
