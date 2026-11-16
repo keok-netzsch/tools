@@ -961,11 +961,11 @@
       "steps": [
         {
           "title": "Start",
-          "text": "Begin from a team template or a blank chat. Pick the folder first. The assistant reads the folder and changes nothing until you allow it."
+          "text": "Begin from a team template or a blank chat. Pick the folder first. The assistant reads the folder and changes nothing until you allow it. Add folder lets it write in other folders you choose, and a session can be forked or started from another one's summary."
         },
         {
           "title": "Work",
-          "text": "Turn on Can change files and every write is checked first. A command, such as the tests, shows with Allow and Don't allow and runs only after you click. Undo this reply puts the files back. Review changes shows each file as a line diff: comment on any change and send all comments in one message, or put one change back."
+          "text": "Turn on Can change files and every write is checked first. A command, such as the tests, shows a card with four clear buttons and runs only after you click; Always allow covers a command prefix. Type @ in the box to pick a file of the conversation's folder. The API key spend sits in the top bar on every screen. Undo this reply puts the files back. Review changes shows each file as a line diff: comment on any change and send all comments in one message, or put one change back."
         },
         {
           "title": "Wrap up",
@@ -1100,6 +1100,22 @@
       },
       {
         "title": "A faster first knowledge search of the day",
+        "state": "In validation"
+      },
+      {
+        "title": "Add folder: let the assistant write in folders the person adds",
+        "state": "In validation"
+      },
+      {
+        "title": "An @ menu in the prompt box to pick a file",
+        "state": "In validation"
+      },
+      {
+        "title": "API key spend in the top bar on every screen",
+        "state": "In validation"
+      },
+      {
+        "title": "Fork a session, and list a session started from a summary under its source",
         "state": "In validation"
       }
     ],
