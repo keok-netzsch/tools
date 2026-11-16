@@ -8,8 +8,8 @@
     "use_when": "You need a presentation, a report, a memo or an internal tool page that must look like the company.",
     "command": "/techcolab-deck",
     "status": "beta",
-    "version": "f7a7877",
-    "date": "2026-11-04",
+    "version": "b1c891d",
+    "date": "2026-10-24",
     "basis": "Published to the team folder for a controlled test.",
     "ships": [
       "SKILL.md",
@@ -27,7 +27,7 @@
     "use_when": "You want to deliver a Power BI report, or to check a semantic model before it goes into one.",
     "command": "/report-builder",
     "status": "beta",
-    "version": "f7a7877",
+    "version": "11f2196",
     "date": "2026-11-04",
     "basis": "Published to the team folder for a controlled test. The audit is in beta.",
     "ships": [
@@ -63,8 +63,8 @@
     "use_when": "You ask how to start a project, what document you need, how to run a kick-off, a status report, a RACI or a closure, or how to handle risk, change, scope and stakeholders.",
     "command": "/pm-copiloto",
     "status": "beta",
-    "version": "f7a7877",
-    "date": "2026-11-04",
+    "version": "4a81b87",
+    "date": "2026-10-28",
     "basis": "Published to the team folder for a controlled test.",
     "ships": [
       "SKILL.md",

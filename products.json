@@ -517,8 +517,8 @@
     },
     "lifecycle": {
       "state": "beta",
-      "version": "2.18.3",
-      "date": "2026-10-29",
+      "version": "2.19.0",
+      "date": "2026-11-14",
       "source": "Registry, read from the tool's own version file"
     },
     "roadmap": [
@@ -948,9 +948,9 @@
         "icon": "shield-check"
       },
       {
-        "value": "125",
-        "label": "releases from 2026-10-16 to 2026-11-04",
-        "note": "From 1.0.0 to 1.37.8. Help lists every version and what it changed.",
+        "value": "132",
+        "label": "releases from 2026-10-16 to 2026-11-16",
+        "note": "From 1.0.0 to 1.41.0. Help lists every version and what it changed.",
         "source": "CHANGELOG",
         "icon": "rocket"
       }
@@ -1049,9 +1049,9 @@
     },
     "lifecycle": {
       "state": "beta",
-      "version": "1.37.8",
-      "date": "2026-11-04",
-      "source": "The tool's own version file and change log"
+      "version": "1.41.0",
+      "date": "2026-11-16",
+      "source": "Registry, read from the tool's own version file"
     },
     "roadmap": [
       {
@@ -1346,10 +1346,10 @@
     ],
     "runs": "Windows scheduled tasks, private lake in OneDrive",
     "tagline": "Daily meetings become a weekly record.",
-    "summary": "Captures every hour and consolidates by code. A week becomes record only after you approve it.",
+    "summary": "Checks every hour for new meeting summaries and consolidates by code. A week becomes record only after you approve it.",
     "hero": {
       "headline": "Daily meetings become a weekly record, and you approve it first.",
-      "sub": "Team Memory Agent captures a team's daily meeting records every hour and writes one weekly draft. Plain code does the merge, so every line traces to a dated source. The week enters the record only after its owner reads it and says yes.",
+      "sub": "Team Memory Agent checks every hour for new meeting summaries, keeps one daily record per meeting and writes one weekly draft. Plain code does the merge, so every line traces to a dated source. The week enters the record only after its owner reads it and says yes.",
       "command": "python tma_publish.py --week 2026-W35 --approve --reviewer \"<owner>\""
     },
     "proof_title": "In numbers",
@@ -1409,7 +1409,7 @@
       "steps": [
         {
           "title": "Capture",
-          "text": "Every hour it reads new meeting summaries and writes one immutable daily record per meeting."
+          "text": "Every hour it checks for new meeting summaries and writes one immutable daily record per summary it finds."
         },
         {
           "title": "Consolidate",
@@ -1438,7 +1438,7 @@
           [
             "Capture",
             "Hourly",
-            "Reads new sources, writes daily records, syncs the lake"
+            "Checks for new meeting summaries, writes daily records, syncs the lake"
           ],
           [
             "Insight window",
